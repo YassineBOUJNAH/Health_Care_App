@@ -3,6 +3,7 @@ package com.ensias.healthcareapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email=emailText.getText().toString();
                 String password=passwordText.getText().toString();
+                if(email!=null && password!=null){
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -61,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
                                 // ...
                             }
                         });
+            }else{
+                    Toast.makeText(MainActivity.this, "vous devez rensegner toutes les champs",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email=emailText.getText().toString();
                 String password=passwordText.getText().toString();
+                if(!email.isEmpty() && !password.isEmpty() ){
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -89,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
+            }else{
+                    Toast.makeText(MainActivity.this, "vous devez rensegner toutes les champs",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -121,6 +132,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser currentUser) {
+        if(currentUser!=null){
+            try {
+                Intent k = new Intent(this, HomeActivity.class);
+                startActivity(k);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
 
+        }
     }
 }
