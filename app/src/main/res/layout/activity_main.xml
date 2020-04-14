@@ -72,8 +72,8 @@
 
     <Button
         android:id="@+id/SignUpBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="121dp"
+        android:layout_height="47dp"
         android:text="sign up"
         app:layout_constraintBottom_toTopOf="@+id/CreateAccount"
         app:layout_constraintEnd_toEndOf="parent"
