@@ -5,9 +5,9 @@ public class Patient extends User {
     private String situationFamiliale;
 
     public Patient(String name, String adresse, String tel, String email, String dateNaissance, String situationFamiliale) {
-        super(name, adresse, tel, email);
+        /*super(name, adresse, tel, email);
         this.dateNaissance = dateNaissance;
-        this.situationFamiliale = situationFamiliale;
+        this.situationFamiliale = situationFamiliale;*/
     }
 
     public String getDateNaissance() {

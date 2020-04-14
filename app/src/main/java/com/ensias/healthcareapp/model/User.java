@@ -5,12 +5,26 @@ public class User {
     private String adresse;
     private String tel;
     private String email;
+    private String type;
 
-    public User(String name, String adresse, String tel, String email) {
+    public User(){
+        //need firebase
+    }
+
+    public User(String name, String adresse, String tel, String email,String type) {
         this.name = name;
         this.adresse = adresse;
         this.tel = tel;
         this.email = email;
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getName() {

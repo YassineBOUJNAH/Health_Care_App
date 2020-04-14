@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/firstSignTel" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/confirmeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Confirme"

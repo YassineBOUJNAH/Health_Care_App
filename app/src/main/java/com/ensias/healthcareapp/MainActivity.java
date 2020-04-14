@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ensias.healthcareapp.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -221,15 +222,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void updateUI(FirebaseUser currentUser) {
+    private void updateUI(final FirebaseUser currentUser) {
         if(currentUser!=null){
             try {
                 UsersRef.document(currentUser.getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         if (documentSnapshot.exists()) {
-                            Intent k = new Intent(MainActivity.this, HomeActivity.class);
-                            startActivity(k);
+                            UsersRef.document(currentUser.getEmail()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    User user=documentSnapshot.toObject(User.class);
+                                    if(user.getType().equals("Doctor")){
+                                        Intent k = new Intent(MainActivity.this, HomeActivity.class);
+                                        startActivity(k);
+                                    }else{
+                                        Snackbar.make(findViewById(R.id.main_layout), "vous ete patient", Snackbar.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
+
                         } else {
                             Intent k = new Intent(MainActivity.this, FirstSigninActivity.class);
                             startActivity(k);
