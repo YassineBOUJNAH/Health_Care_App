@@ -233,11 +233,11 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                                     User user=documentSnapshot.toObject(User.class);
-                                    if(user.getType().equals("Doctor")){
+                                    if(user.getType().equals("Patient")){
                                         Intent k = new Intent(MainActivity.this, HomeActivity.class);
                                         startActivity(k);
                                     }else{
-                                        Snackbar.make(findViewById(R.id.main_layout), "vous ete patient", Snackbar.LENGTH_SHORT).show();
+                                        Snackbar.make(findViewById(R.id.main_layout), "Doctor interface entraint de realisation", Snackbar.LENGTH_SHORT).show();
                                     }
                                 }
                             });

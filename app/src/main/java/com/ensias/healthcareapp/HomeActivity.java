@@ -11,10 +11,20 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity {
     Button SignOutBtn;
+    Button searchPatBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
+        searchPatBtn = (Button)findViewById(R.id.searchBtn);
+        searchPatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(HomeActivity.this, SearchPatActivity.class);
+                startActivity(k);
+            }
+        });
         SignOutBtn=findViewById(R.id.signOutBtn);
         SignOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
