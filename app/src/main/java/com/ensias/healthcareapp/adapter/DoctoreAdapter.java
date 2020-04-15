@@ -24,7 +24,7 @@ public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdap
     @Override
     protected void onBindViewHolder(@NonNull DoctoreHolder doctoreHolder, int i, @NonNull Doctor doctor) {
         doctoreHolder.title.setText(doctor.getName());
-        doctoreHolder.specialite.setText(doctor.getSpecialite());
+        doctoreHolder.specialite.setText("Specialite : "+doctor.getSpecialite());
        // doctoreHolder.image.setImageURI(Uri.parse("drawable-v24/ic_launcher_foreground.xml"));
     }
 
