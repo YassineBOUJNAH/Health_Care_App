@@ -17,8 +17,8 @@
         <ImageView
             android:id="@+id/doctor_item_image"
             android:layout_width="68dp"
-            android:layout_height="64dp"
-            app:srcCompat="@drawable/ic_launcher_foreground"
+            android:layout_height="72dp"
+            app:srcCompat="@drawable/ic_launcher_background"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
