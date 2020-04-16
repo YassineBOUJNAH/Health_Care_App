@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
             }else{
-                    Toast.makeText(MainActivity.this, "vous devez rensegner toutes les champs",
+                    Toast.makeText(MainActivity.this, "vous devez rensegnier toutes les champs",
                             Toast.LENGTH_SHORT).show();
                 }
             }
