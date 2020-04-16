@@ -7,7 +7,8 @@
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    app:cardBackgroundColor="#FFFFE8">>
+    app:cardBackgroundColor="@color/cardview_light_background"
+    app:cardCornerRadius="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,9 +17,9 @@
 
         <ImageView
             android:id="@+id/doctor_item_image"
-            android:layout_width="68dp"
-            android:layout_height="72dp"
-            app:srcCompat="@drawable/ic_launcher_background"
+            android:layout_width="70dp"
+            android:layout_height="77dp"
+            app:srcCompat="@drawable/doctor"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
@@ -27,8 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="96dp"
+            android:textColor="#000000"
             android:maxLines="1"
             android:text="Title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -39,10 +41,25 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/doctor_view_title"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="89dp"
-            android:layout_marginTop="2dp"
-            android:text="Description"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="89dp" />
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="7dp"
+            android:textColor="#000000"
+            android:text="Description" />
+
+        <TextView
+            android:id="@+id/onlineStatut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_description"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="7dp"
+            android:textSize="12dp"
+            android:textColor="@color/colorAccent"
+            android:text="Online" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
