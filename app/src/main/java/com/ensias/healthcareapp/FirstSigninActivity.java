@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.ensias.healthcareapp.fireStoreApi.DoctorHelper;
+import com.ensias.healthcareapp.fireStoreApi.PatientHelper;
 import com.ensias.healthcareapp.fireStoreApi.UserHelper;
 
 public class FirstSigninActivity extends AppCompatActivity {
@@ -30,12 +31,12 @@ public class FirstSigninActivity extends AppCompatActivity {
 
 
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-// Create an ArrayAdapter using the string array and a default spinner layout
+    // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.planets_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+    // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
+    // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +50,8 @@ public class FirstSigninActivity extends AppCompatActivity {
                 type=spinner.getSelectedItem().toString();
                 UserHelper.addUser(fullname,birtDay,tel,type);
                 if(type.equals("Patient")){
+                    PatientHelper.addPatient(fullname, "adress", tel);
+                    System.out.println("Add patient "+fullname+" to patient collection");
 
                 }else{
                     DoctorHelper.addDoctor(fullname,"adress",tel,"specialite");
