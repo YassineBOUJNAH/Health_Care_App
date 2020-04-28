@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchPatActivity"
-    android:background="#EDF0F5">
+    android:background="#EDF0F5"
+    android:id="@+id/id_show">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/serachPatRecycle"

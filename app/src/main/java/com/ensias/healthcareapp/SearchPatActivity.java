@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.ensias.healthcareapp.adapter.DoctoreAdapter;
 import com.ensias.healthcareapp.model.Doctor;
+import com.ensias.healthcareapp.model.ShowToast;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -54,4 +58,6 @@ public class SearchPatActivity extends AppCompatActivity {
         super.onStop();
         adapter.stopListening();
     }
+
+
 }
