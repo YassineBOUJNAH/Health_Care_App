@@ -51,13 +51,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/medicalFolder"
+        android:id="@+id/btnRequst"
         android:layout_width="105dp"
         android:layout_height="96dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="237dp"
         android:background="#CFD8DC"
-        android:text="Medical Folder"
+        android:text=" Patient Request"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/signOutBtn"

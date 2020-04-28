@@ -12,11 +12,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class DoctorHomeActivity extends AppCompatActivity {
     Button SignOutBtn2;
+    Button BtnRequst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home); //ici layout de page d'acceuil MEDECIN
+        BtnRequst=findViewById(R.id.btnRequst);
         SignOutBtn2=findViewById(R.id.signOutBtn);
         SignOutBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,6 +27,13 @@ public class DoctorHomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+            }
+        });
+        BtnRequst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(DoctorHomeActivity.this, PatientRequestPage.class);
+                startActivity(k);
             }
         });
     }

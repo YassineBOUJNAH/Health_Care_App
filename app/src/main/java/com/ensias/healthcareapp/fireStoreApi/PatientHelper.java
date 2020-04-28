@@ -13,6 +13,5 @@ public class PatientHelper {
         Patient patient = new Patient(name,adresse,tel,FirebaseAuth.getInstance().getCurrentUser().getEmail(),"aaa", "aaa");
         System.out.println("Create object patient");
         PatientRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(patient);
-
     }
 }
