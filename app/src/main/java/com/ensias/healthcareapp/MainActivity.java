@@ -237,7 +237,9 @@ public class MainActivity extends AppCompatActivity {
                                         Intent k = new Intent(MainActivity.this, HomeActivity.class);
                                         startActivity(k);
                                     }else{
-                                        Snackbar.make(findViewById(R.id.main_layout), "Doctor interface entraint de realisation", Snackbar.LENGTH_SHORT).show();
+                                        Intent k = new Intent(MainActivity.this, DoctorHomeActivity.class);
+                                        startActivity(k);
+                                        //Snackbar.make(findViewById(R.id.main_layout), "Doctor interface entraint de realisation", Snackbar.LENGTH_SHORT).show();
                                     }
                                 }
                             });

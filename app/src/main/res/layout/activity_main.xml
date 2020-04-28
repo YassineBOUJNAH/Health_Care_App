@@ -62,13 +62,15 @@
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="Email"
-        android:textColorHint="#9E9E9E"
         android:inputType="textEmailAddress"
         android:paddingLeft="20dp"
         android:textColor="#000000"
+        android:textColorHint="#9E9E9E"
         app:layout_constraintBottom_toTopOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText"

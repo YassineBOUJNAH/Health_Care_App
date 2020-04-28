@@ -9,7 +9,7 @@
 
 
     <Button
-        android:id="@+id/signOutBtn"
+        android:id="@+id/signOutBtn2"
         android:layout_width="211dp"
         android:layout_height="45dp"
         android:background="#C62828"
@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.916" />
+        app:layout_constraintVertical_bias="0.933" />
 
     <LinearLayout
         android:id="@+id/view"
@@ -51,10 +51,26 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/medicalFolder"
+        android:layout_width="105dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="237dp"
+        android:background="#CFD8DC"
+        android:text="Medical Folder"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.705"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <Button
         android:id="@+id/appointement"
         android:layout_width="105dp"
         android:layout_height="96dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="168dp"
         android:layout_marginBottom="98dp"
         android:background="#CFD8DC"
         android:text="Appointement"
@@ -68,10 +84,26 @@
         app:layout_constraintVertical_bias="0.584" />
 
     <Button
+        android:id="@+id/searchBtn"
+        android:layout_width="105dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="237dp"
+        android:background="#CFD8DC"
+        android:text="Search"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.284"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    <Button
         android:id="@+id/profile"
         android:layout_width="105dp"
         android:layout_height="96dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="168dp"
         android:layout_marginBottom="98dp"
         android:background="#CFD8DC"
         android:text="Profile"
@@ -83,38 +115,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:layout_constraintVertical_bias="0.584" />
-
-    <Button
-        android:id="@+id/medicalFolder"
-        android:layout_width="105dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginBottom="237dp"
-        android:background="#CFD8DC"
-        android:text="Medical Folder"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.705"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="105dp"
-        android:layout_height="96dp"
-        android:layout_marginTop="81dp"
-        android:layout_marginBottom="237dp"
-        android:background="#CFD8DC"
-        android:text="Search"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.284"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
