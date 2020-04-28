@@ -17,7 +17,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home); //ici layout de page d'acceuil MEDECIN
-        SignOutBtn2=findViewById(R.id.signOutBtn2);
+        SignOutBtn2=findViewById(R.id.signOutBtn);
         SignOutBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

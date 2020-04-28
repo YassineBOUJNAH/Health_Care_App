@@ -8,7 +8,7 @@
 
 
     <Button
-        android:id="@+id/signOutBtn2"
+        android:id="@+id/signOutBtn"
         android:layout_width="211dp"
         android:layout_height="45dp"
         android:background="#C62828"

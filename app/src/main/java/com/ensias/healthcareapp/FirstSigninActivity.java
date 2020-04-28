@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.ensias.healthcareapp.fireStoreApi.DoctorHelper;
 import com.ensias.healthcareapp.fireStoreApi.UserHelper;
 
 public class FirstSigninActivity extends AppCompatActivity {
@@ -47,6 +48,11 @@ public class FirstSigninActivity extends AppCompatActivity {
                 tel=teL.getText().toString();
                 type=spinner.getSelectedItem().toString();
                 UserHelper.addUser(fullname,birtDay,tel,type);
+                if(type.equals("Patient")){
+
+                }else{
+                    DoctorHelper.addDoctor(fullname,"adress",tel,"specialite");
+                }
                 Intent k = new Intent(FirstSigninActivity.this, MainActivity.class);
                 startActivity(k);
             }
