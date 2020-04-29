@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdapter.DoctoreHolder> {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
-    static CollectionReference addRequest = db.collection("addRequest");
+    static CollectionReference addRequest = db.collection("Request");
 
     public DoctoreAdapter(@NonNull FirestoreRecyclerOptions<Doctor> options) {
         super(options);
