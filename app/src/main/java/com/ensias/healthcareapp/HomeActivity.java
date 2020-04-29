@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class HomeActivity extends AppCompatActivity {
     Button SignOutBtn;
     Button searchPatBtn;
+    Button myDoctors;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,5 +36,15 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        myDoctors = (Button)findViewById(R.id.myDoctors);
+        myDoctors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(HomeActivity.this, MyDoctorsAvtivity.class);
+                startActivity(k);
+            }
+        });
+
     }
 }

@@ -11,6 +11,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".PatientRequestPage"></activity>
         <activity android:name=".DoctorHomeActivity" />
+        <activity android:name=".MyDoctorsAvtivity" />
         <activity android:name=".SearchPatActivity" />
         <activity android:name=".FirstSigninActivity" />
         <activity android:name=".HomeActivity" />
