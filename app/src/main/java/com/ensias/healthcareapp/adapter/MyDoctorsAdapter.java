@@ -1,5 +1,7 @@
 package com.ensias.healthcareapp.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ensias.healthcareapp.ChatActivity;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.Doctor;
 import com.ensias.healthcareapp.model.Patient;
@@ -38,9 +41,22 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull MyDoctorsHolder myDoctorsHolder, int position, @NonNull Doctor doctor) {
+    protected void onBindViewHolder(@NonNull MyDoctorsHolder myDoctorsHolder, int position, @NonNull final Doctor doctor) {
         myDoctorsHolder.textViewTitle.setText(doctor.getName());
         myDoctorsHolder.textViewDescription.setText("Specialite : "+doctor.getSpecialite());
+        myDoctorsHolder.sendMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPage(v.getContext(),doctor);
+            }
+        });
+    }
+
+    private void openPage(Context wf, Doctor d){
+        Intent i = new Intent(wf, ChatActivity.class);
+        i.putExtra("key1",d.getEmail()+"_"+ FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+        i.putExtra("key2",FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()+"_"+d.getEmail());
+        wf.startActivity(i);
     }
 
     @NonNull

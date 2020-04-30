@@ -56,13 +56,14 @@ public class PatRequestAdapter extends FirestoreRecyclerAdapter<Request, PatRequ
                 db.collection("Patient").document(idPat).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        Patient pat= documentSnapshot.toObject(Patient.class);
+                        final Patient pat= documentSnapshot.toObject(Patient.class);
                         RequestHolder.title.setText(pat.getName());
                         RequestHolder.specialite.setText("Want to be your patient");
                         RequestHolder.addDoc.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(final View v) {
                                 db.collection("Patient").document(idPat).collection("MyDoctors").document(idDoc).set(onligneDoc);
+                                db.collection("Doctor").document(idDoc+"").collection("MyPatients").document(idPat).set(pat);
                                 addRequest.whereEqualTo("id_doctor",idDoc+"").whereEqualTo("id_patient",idPat+"").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                     @Override
                                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
