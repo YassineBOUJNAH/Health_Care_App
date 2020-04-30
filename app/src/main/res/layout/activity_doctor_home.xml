@@ -84,13 +84,13 @@
         app:layout_constraintVertical_bias="0.584" />
 
     <Button
-        android:id="@+id/searchBtn"
+        android:id="@+id/listPatients"
         android:layout_width="105dp"
         android:layout_height="96dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="237dp"
         android:background="#CFD8DC"
-        android:text="Search"
+        android:text="My Patients"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/signOutBtn"
