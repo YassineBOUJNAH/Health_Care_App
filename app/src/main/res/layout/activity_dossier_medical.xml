@@ -101,22 +101,7 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/consultation_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryDark"
-            android:text="Consultation" />
-        <Button
-            android:id="@+id/hospitalisation_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:text="Hospitalisation" />
-    </LinearLayout>
+        android:layout_height="wrap_content"/>
     <!-- 1 | Add TabLayout to handle tabs -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/activity_main_tabs"

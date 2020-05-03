@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.ensias.healthcareapp.ConsultationFragmentPage;
+import com.ensias.healthcareapp.Hospitalisation;
 import com.ensias.healthcareapp.fragment.ConsultationFragment;
 
 public class ConsultationFragmentAdapter extends FragmentPagerAdapter {
@@ -11,24 +13,36 @@ public class ConsultationFragmentAdapter extends FragmentPagerAdapter {
     private int[] colors;
 
     // 2 - Default Constructor
-    public ConsultationFragmentAdapter(FragmentManager mgr, int[] colors) {
+    public ConsultationFragmentAdapter(FragmentManager mgr) {
         super(mgr);
-        this.colors = colors;
     }
 
     @Override
     public int getCount() {
-        return(5); // 3 - Number of page to show
+        return(2); // 3 - Number of page to show
     }
 
     @Override
     public Fragment getItem(int position) {
-        // 4 - Page to return
-        return(ConsultationFragment.newInstance(position, this.colors[position]));
+        switch (position){
+            case 0: //Page number 1
+                return ConsultationFragmentPage.newInstance();
+            case 1: //Page number 2
+                return Hospitalisation.newInstance();
+            default:
+                return null;
+        }
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "Page "+position;
+        switch (position){
+            case 0: //Page number 1
+                return "Consultation";
+            case 1: //Page number 2
+                return "Hospitalisation";
+            default:
+                return null;
+        }
     }
 }

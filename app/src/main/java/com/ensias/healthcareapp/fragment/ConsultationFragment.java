@@ -37,6 +37,7 @@ public class ConsultationFragment extends Fragment {
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
