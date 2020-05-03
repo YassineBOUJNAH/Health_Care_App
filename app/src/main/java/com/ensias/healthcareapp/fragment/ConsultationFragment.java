@@ -18,9 +18,6 @@ public class ConsultationFragment extends Fragment {
     private static final String KEY_POSITION = "position";
     private static final String KEY_COLOR = "color";
 
-    private String mParam1;
-    private String mParam2;
-
     public ConsultationFragment() {
     }
 
@@ -39,14 +36,6 @@ public class ConsultationFragment extends Fragment {
         return(frag);
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(KEY_POSITION);
-            mParam2 = getArguments().getString(KEY_COLOR);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

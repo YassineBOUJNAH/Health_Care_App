@@ -117,6 +117,15 @@
             android:background="@color/colorAccent"
             android:text="Hospitalisation" />
     </LinearLayout>
+    <!-- 1 | Add TabLayout to handle tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/activity_main_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B6C9F1"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabTextColor="#D4E0F8"
+        app:tabSelectedTextColor="#fff"/>
 
 
     <androidx.viewpager.widget.ViewPager

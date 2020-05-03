@@ -26,4 +26,9 @@ public class ConsultationFragmentAdapter extends FragmentPagerAdapter {
         // 4 - Page to return
         return(ConsultationFragment.newInstance(position, this.colors[position]));
     }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return "Page "+position;
+    }
 }
