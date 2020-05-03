@@ -13,6 +13,7 @@ public class HomeActivity extends AppCompatActivity {
     Button SignOutBtn;
     Button searchPatBtn;
     Button myDoctors;
+    Button BtnRequst;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,14 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent k = new Intent(HomeActivity.this, MyDoctorsAvtivity.class);
                 startActivity(k);
+            }
+        });
+        BtnRequst = findViewById(R.id.btnRequst);
+        BtnRequst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DossierMedical.class);
+                startActivity(intent);
             }
         });
 
