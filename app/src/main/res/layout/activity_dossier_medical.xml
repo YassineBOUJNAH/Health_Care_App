@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".MedicalFolderActivity"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -67,7 +69,8 @@
             android:layout_marginLeft="228dp"
             android:layout_marginTop="0dp"
             android:inputType="number"
-            android:text="Height"
+            android:hint="Height"
+            android:textColorHint="#b8b8b8"
             android:textColor="#000000"
             android:textSize="14sp" />
 
@@ -80,7 +83,8 @@
             android:layout_marginStart="228dp"
             android:layout_marginLeft="228dp"
             android:inputType="number"
-            android:text="Weight"
+            android:hint="Weight"
+            android:textColorHint="#b8b8b8"
             android:textColor="#000000"
             android:textSize="14sp" />
 

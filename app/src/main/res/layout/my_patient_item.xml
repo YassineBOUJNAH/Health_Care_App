@@ -13,7 +13,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:id="@+id/parent_layout">
 
         <ImageView
             android:id="@+id/patient_item_image"

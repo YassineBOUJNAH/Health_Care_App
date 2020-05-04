@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ensias.healthcareapp.ChatActivity;
+import com.ensias.healthcareapp.MedicalFolderActivity;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.Patient;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -41,6 +43,25 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
                 openPage(v.getContext(),patient);
             }
         });
+
+        myPatientsHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPatientMedicalFolder(v.getContext(),patient);
+
+            }
+        });
+
+
+    }
+
+    private void openPatientMedicalFolder(Context medicalFolder, Patient patient){
+        Intent intent = new Intent(medicalFolder, MedicalFolderActivity.class);
+        intent.putExtra("patient_name", patient.getName()+"_"+ FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString());
+        intent.putExtra("patient_email",patient.getEmail());
+        intent.putExtra("patient_phone", patient.getTel());
+        medicalFolder.startActivity(intent);
+
     }
 
     private void openPage(Context wf,Patient p){
@@ -62,12 +83,14 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
         TextView textViewTelephone;
         ImageView imageViewPatient;
         Button contactButton;
+        RelativeLayout parentLayout;
         public MyPatientsHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.patient_view_title);
             textViewTelephone = itemView.findViewById(R.id.text_view_telephone);
             imageViewPatient = itemView.findViewById(R.id.patient_item_image);
             contactButton = itemView.findViewById(R.id.contact);
+            parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
 
