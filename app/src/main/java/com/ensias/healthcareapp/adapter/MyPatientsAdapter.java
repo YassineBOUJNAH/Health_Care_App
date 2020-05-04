@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ensias.healthcareapp.ChatActivity;
+import com.ensias.healthcareapp.DossierMedical;
 import com.ensias.healthcareapp.MedicalFolderActivity;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.Patient;
@@ -56,12 +57,11 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
     }
 
     private void openPatientMedicalFolder(Context medicalFolder, Patient patient){
-        Intent intent = new Intent(medicalFolder, MedicalFolderActivity.class);
-        intent.putExtra("patient_name", patient.getName()+"_"+ FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString());
+        Intent intent = new Intent(medicalFolder, DossierMedical.class);
+        intent.putExtra("patient_name", patient.getName());
         intent.putExtra("patient_email",patient.getEmail());
         intent.putExtra("patient_phone", patient.getTel());
         medicalFolder.startActivity(intent);
-
     }
 
     private void openPage(Context wf,Patient p){

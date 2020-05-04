@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.ensias.healthcareapp.adapter.ConsultationFragmentAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class DossierMedical extends AppCompatActivity {
+    private final static String TAG = "DossierMedical";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,39 @@ public class DossierMedical extends AppCompatActivity {
         setContentView(R.layout.activity_dossier_medical);
         this.configureViewPager();
 
+        Log.d(TAG, "onCreate dossier medical activity: started");
+
+        getIncomingIntent();
+    }
+
+    //Receive patient informations from the previous activity
+    private void getIncomingIntent(){
+        Log.d(TAG, "getIncomingIntent: checking for incoming intents");
+        //Check if the incoming intents exist
+        if(getIntent().hasExtra("patient_name") && getIntent().hasExtra("patient_email")){
+            Log.d(TAG, "getIncomingIntent: found intent extras.");
+            String patient_name = getIntent().getStringExtra("patient_name");
+            String patient_email = getIntent().getStringExtra("patient_email");
+            String patient_phone = getIntent().getStringExtra("patient_phone");
+
+            //set patient name, email, phone number
+            setPatientInfos(patient_name, patient_email, patient_phone);
+
+        }
+    }
+
+    //Add patient name, email, phone number to the medical folder
+    private void setPatientInfos(String patient_name, String patient_email, String patient_phone){
+        Log.d(TAG, "setPatientInfos: put patient infos");
+
+        TextView name = findViewById(R.id.patient_name);
+        name.setText(patient_name);
+
+        TextView email = findViewById(R.id.patient_address);
+        email.setText(patient_email);
+
+        TextView number = findViewById(R.id.phone_number);
+        number.setText(patient_phone);
     }
 
     private void configureViewPager() {
