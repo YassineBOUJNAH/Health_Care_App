@@ -8,16 +8,27 @@ public class Fiche {
     private String traitement;
     private String type;
     private Date dateCreated;
+    private String doctor;
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
+    }
 
     public Fiche(){
 
     }
 
-    public Fiche(String maladie, String description, String traitement, String type) {
+    public Fiche(String maladie, String description, String traitement, String type, Date dateCreated, String doctor) {
         this.maladie = maladie;
         this.description = description;
         this.traitement = traitement;
         this.type = type;
+        this.dateCreated = dateCreated;
+        this.doctor = doctor;
     }
 
     public String getMaladie() {
