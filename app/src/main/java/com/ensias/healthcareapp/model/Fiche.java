@@ -3,44 +3,21 @@ package com.ensias.healthcareapp.model;
 import java.util.Date;
 
 public class Fiche {
-    private float poids;
-    private String operation;
-    private String groupeSanguin;
     private String maladie;
-    private float taille;
-    private Date dateCreation;
+    private String description;
+    private String traitement;
+    private String type;
+    private Date dateCreated;
 
-    public Fiche(float poids, String operation, String groupeSanguin, String maladie, float taille, Date dateCreation) {
-        this.poids = poids;
-        this.operation = operation;
-        this.groupeSanguin = groupeSanguin;
+    public Fiche(){
+
+    }
+
+    public Fiche(String maladie, String description, String traitement, String type) {
         this.maladie = maladie;
-        this.taille = taille;
-        this.dateCreation = dateCreation;
-    }
-
-    public float getPoids() {
-        return poids;
-    }
-
-    public void setPoids(float poids) {
-        this.poids = poids;
-    }
-
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
-
-    public String getGroupeSanguin() {
-        return groupeSanguin;
-    }
-
-    public void setGroupeSanguin(String groupeSanguin) {
-        this.groupeSanguin = groupeSanguin;
+        this.description = description;
+        this.traitement = traitement;
+        this.type = type;
     }
 
     public String getMaladie() {
@@ -51,20 +28,36 @@ public class Fiche {
         this.maladie = maladie;
     }
 
-    public float getTaille() {
-        return taille;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTaille(float taille) {
-        this.taille = taille;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Date getDateCreation() {
-        return dateCreation;
+    public String getTraitement() {
+        return traitement;
     }
 
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setTraitement(String traitement) {
+        this.traitement = traitement;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }
 
