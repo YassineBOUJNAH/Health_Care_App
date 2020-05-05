@@ -146,7 +146,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/send_message"
+                android:id="@+id/voir_fiche_btn"
                 android:layout_width="72dp"
                 android:layout_height="26dp"
                 android:layout_alignParentEnd="true"

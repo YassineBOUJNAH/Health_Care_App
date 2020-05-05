@@ -12,20 +12,9 @@ import android.widget.TextView;
 import com.ensias.healthcareapp.ChatActivity;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.Doctor;
-import com.ensias.healthcareapp.model.Patient;
-import com.ensias.healthcareapp.model.Request;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import org.w3c.dom.Text;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,7 +68,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
             textViewDescription = itemView.findViewById(R.id.text_view_description);
             textViewStatus = itemView.findViewById(R.id.onlineStatut);
             imageViewDoctor = itemView.findViewById(R.id.doctor_item_image);
-            sendMessageButton = itemView.findViewById(R.id.send_message);
+            sendMessageButton = itemView.findViewById(R.id.voir_fiche_btn);
         }
     }
 
