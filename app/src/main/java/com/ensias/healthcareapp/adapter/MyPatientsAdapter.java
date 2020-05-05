@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.ensias.healthcareapp.ChatActivity;
 import com.ensias.healthcareapp.DossierMedical;
-import com.ensias.healthcareapp.MedicalFolderActivity;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.Patient;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;

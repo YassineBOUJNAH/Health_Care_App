@@ -16,7 +16,6 @@ public class UserHelper {
 
     public static void addUser(String name, String adresse, String tel,String type){
         User user = new User(name,adresse,tel,FirebaseAuth.getInstance().getCurrentUser().getEmail(),type);
-
         UsersRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(user);
 
     }

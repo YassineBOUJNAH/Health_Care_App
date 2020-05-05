@@ -11,10 +11,10 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".DossierMedical"></activity>
         <activity android:name=".ChatActivity" />
-        <activity android:name=".MedicalFolderActivity" />
         <activity android:name=".PatientRequestPage" />
         <activity android:name=".DoctorHomeActivity" />
         <activity android:name=".MyDoctorsAvtivity" />
+        <activity android:name=".FicheActivity" />
         <activity android:name=".MyPatientsActivity" />
         <activity android:name=".SearchPatActivity" />
         <activity android:name=".FirstSigninActivity" />

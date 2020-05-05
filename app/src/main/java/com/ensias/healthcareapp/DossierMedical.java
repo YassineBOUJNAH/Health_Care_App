@@ -3,19 +3,21 @@ package com.ensias.healthcareapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ensias.healthcareapp.adapter.ConsultationFragmentAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 public class DossierMedical extends AppCompatActivity {
     private final static String TAG = "DossierMedical";
+    private FloatingActionButton createNewFicheButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +26,17 @@ public class DossierMedical extends AppCompatActivity {
         this.configureViewPager();
 
         Log.d(TAG, "onCreate dossier medical activity: started");
-
         getIncomingIntent();
+
+        createNewFicheButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        createNewFicheButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openPatientFiche();
+            }
+        });
+
+
     }
 
     //Receive patient informations from the previous activity
@@ -75,4 +86,14 @@ public class DossierMedical extends AppCompatActivity {
         //((ViewGroup) tabs.getChildAt(0)).getChildAt(1).setBackgroundColor(0xFF00FF00);
 
     }
+
+    private void openPatientFiche(){
+        Intent intent = new Intent(this, FicheActivity.class);
+        String patient_name = getIntent().getStringExtra("patient_name");
+        String patient_email = getIntent().getStringExtra("patient_email");
+        intent.putExtra("patient_email", patient_email);
+        intent.putExtra("patient_name", patient_name);
+        startActivity(intent);
+    }
+
 }

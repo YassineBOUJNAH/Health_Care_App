@@ -10,24 +10,15 @@ public class Fiche {
     private Date dateCreated;
     private String doctor;
 
-    public String getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(String doctor) {
-        this.doctor = doctor;
-    }
-
     public Fiche(){
 
     }
 
-    public Fiche(String maladie, String description, String traitement, String type, Date dateCreated, String doctor) {
+    public Fiche(String maladie, String description, String traitement, String type, String doctor) {
         this.maladie = maladie;
         this.description = description;
         this.traitement = traitement;
         this.type = type;
-        this.dateCreated = dateCreated;
         this.doctor = doctor;
     }
 
@@ -69,6 +60,14 @@ public class Fiche {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
     }
 }
 
