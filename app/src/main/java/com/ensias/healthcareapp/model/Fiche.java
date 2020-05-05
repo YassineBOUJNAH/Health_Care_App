@@ -1,5 +1,7 @@
 package com.ensias.healthcareapp.model;
 
+import com.google.firebase.firestore.ServerTimestamp;
+
 import java.util.Date;
 
 public class Fiche {
@@ -54,9 +56,8 @@ public class Fiche {
         this.type = type;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
-    }
+    @ServerTimestamp
+    public Date getDateCreated() { return dateCreated; }
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
