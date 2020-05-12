@@ -71,5 +71,16 @@
             android:layout_marginStart="298dp"
             android:layout_marginLeft="298dp"
             android:text="Add Doctor" />
+
+        <Button
+            android:id="@+id/appointemenBtn"
+            android:layout_width="62dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="230dp"
+            android:layout_marginLeft="233dp"
+            android:background="#00F0FF"
+            android:text="rendez-vous" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

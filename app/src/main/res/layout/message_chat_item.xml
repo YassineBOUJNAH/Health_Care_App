@@ -13,7 +13,9 @@
             android:layout_height="wrap_content"
             android:text="message"
             android:layout_gravity="right"
-            android:background="#FF9D9EFF"
-            android:textSize="25dp"/>
+            android:background="#4267B2"
+            android:textSize="25dp"
+            android:padding="10dp"
+            android:shadowRadius="@android:integer/config_shortAnimTime"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.cardview.widget.CardView>
