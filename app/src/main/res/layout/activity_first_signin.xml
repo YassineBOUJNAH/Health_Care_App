@@ -67,14 +67,28 @@
         android:layout_margin="20dp"
         android:background="#ffffff"
         android:paddingLeft="20dp"
-        android:prompt="@string/common_google_play_services_update_text"
         android:spinnerMode="dropdown"
         android:textColor="#000000"
-        android:textColorHint="#9E9E9E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstSignTel"
+        app:layout_constraintVertical_bias="0.163" />
+
+    <Spinner
+        android:id="@+id/specialite_spinner"
+        android:layout_width="299dp"
+        android:layout_height="46dp"
+        android:layout_margin="20dp"
+        android:background="#ffffff"
+        android:paddingLeft="20dp"
+        android:spinnerMode="dropdown"
+        android:textColor="#000000"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
         app:layout_constraintVertical_bias="0.163" />
 
     <TextView
@@ -100,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        app:layout_constraintTop_toBottomOf="@+id/specialite_spinner"
         app:layout_constraintVertical_bias="0.349" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

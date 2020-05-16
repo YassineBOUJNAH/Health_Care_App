@@ -59,6 +59,16 @@
         <item>Hospitalisation</item>
     </string-array>
 
+    <string-array name="specialite_spinner">
+        <item>Dentiste</item>
+        <item>Médecin général</item>
+        <item>ORL</item>
+        <item>Ophtalmologue</item>
+        <item>Pédiatre</item>
+        <item>Radiologue</item>
+        <item>Rhumatologue</item>
+    </string-array>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -9,8 +9,8 @@ public class DoctorHelper {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static CollectionReference DoctorRef = db.collection("Doctor");
 
-    public static void addDoctor(String name, String adresse, String tel,String Specialite){
-        Doctor doctor = new Doctor(name,adresse,tel, FirebaseAuth.getInstance().getCurrentUser().getEmail(),"aucune");
+    public static void addDoctor(String name, String adresse, String tel,String specialite){
+        Doctor doctor = new Doctor(name,adresse,tel, FirebaseAuth.getInstance().getCurrentUser().getEmail(),specialite);
 
         DoctorRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(doctor);
 
