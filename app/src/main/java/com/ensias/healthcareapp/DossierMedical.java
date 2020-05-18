@@ -53,6 +53,8 @@ public class DossierMedical extends AppCompatActivity {
             setPatientInfos(patient_name, patient_email, patient_phone);
 
         }
+        Log.d(TAG, "No intent");
+
     }
 
     //Add patient name, email, phone number to the medical folder

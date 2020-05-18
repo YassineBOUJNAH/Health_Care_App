@@ -132,7 +132,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/doctor_name"
+                android:id="@+id/doctor_name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_view_description"
@@ -146,7 +146,7 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/voir_fiche_btn"
+                android:id="@+id/voir_fiche_btn2"
                 android:layout_width="72dp"
                 android:layout_height="26dp"
                 android:layout_alignParentEnd="true"

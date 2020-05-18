@@ -51,6 +51,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DossierMedical.class);
+//Current user intent (add extra)
                 startActivity(intent);
             }
         });
