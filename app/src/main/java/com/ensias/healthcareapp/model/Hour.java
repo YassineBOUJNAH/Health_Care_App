@@ -2,9 +2,11 @@ package com.ensias.healthcareapp.model;
 
 public class Hour {
     private String patient;
+    private String choosen;
 
     public Hour(String patient) {
         this.patient = patient;
+        choosen = "false";
     }
     public Hour(){
 
@@ -15,5 +17,13 @@ public class Hour {
 
     public void setPatient(String patient) {
         this.patient = patient;
+    }
+
+    public String getChoosen() {
+        return choosen;
+    }
+
+    public void setChoosen(String choosen) {
+        this.choosen = choosen;
     }
 }

@@ -13,9 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.ensias.healthcareapp.model.Doctor;
 import com.ensias.healthcareapp.model.Hour;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,16 +35,19 @@ public class AppointementActivity extends AppCompatActivity {
     private LinearLayout lis;
     //final List<String> fruits_list = new ArrayList<String>(Arrays.asList(fruits));
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
+    static CollectionReference addRequest2 = db.collection("Request");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointement);
         lis = findViewById(R.id.listDate);
-        String patient_email = getIntent().getStringExtra("key1");
+        final String patient_email = getIntent().getStringExtra("key1");
         String day = getIntent().getStringExtra("key2");
+        //PATIENT EMAIL IS ACCTUELLY DOCTOR EMAIL
         final CollectionReference addRequest = db.collection("Doctor").document(patient_email).collection("calendar").document(day).collection("hour");
-
+        final String hourPath = "Doctor/"+patient_email+"/calendar/"+day+"/hour";
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(140, 398);
         layoutParams.setMargins(200, 0, 300, 0);
@@ -60,7 +65,10 @@ public class AppointementActivity extends AppCompatActivity {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     Hour note = documentSnapshot.toObject(Hour.class);
                     if(note != null){
-                        btn.setText("already choosen");
+                        if(note.getChoosen().equals("true"))
+                            btn.setText("already choosen");
+                        else
+                            btn.setText("entrain de revision");
                     }
                     else{
                         btn.setText("confirme this hour");
@@ -69,6 +77,17 @@ public class AppointementActivity extends AppCompatActivity {
                             public void onClick(View v) {
                                 Hour h =new Hour(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
                                 addRequest.document(j+"").set(h);
+                                Map<String, Object> note = new HashMap<>();
+                                note.put("id_patient", FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
+                                note.put("id_doctor", patient_email);
+                                note.put("hour_path",hourPath+"/"+j);
+                                addRequest2.document().set(note)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Snackbar.make(btn, "demande de rendez-vous", Snackbar.LENGTH_SHORT).show();
+                                            }
+                                        });
                             }
                         });
                     }

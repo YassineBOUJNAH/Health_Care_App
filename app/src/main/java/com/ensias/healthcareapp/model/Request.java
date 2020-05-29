@@ -3,9 +3,17 @@ package com.ensias.healthcareapp.model;
 public class Request {
     private  String id_patient;
     private String id_doctor;
-
+    private String hour_path;
     public Request(){
 
+    }
+
+    public String getHour_path() {
+        return hour_path;
+    }
+
+    public void setHour_path(String hour_path) {
+        this.hour_path = hour_path;
     }
 
     public String getId_patient() {
