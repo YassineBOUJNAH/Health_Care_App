@@ -3,6 +3,15 @@ package com.ensias.healthcareapp.model;
 public class Hour {
     private String patient;
     private String choosen;
+    private String patientName;
+
+    public String getPatientName() {
+        return patientName;
+    }
+
+    public void setPatientName(String patientName) {
+        this.patientName = patientName;
+    }
 
     public Hour(String patient) {
         this.patient = patient;

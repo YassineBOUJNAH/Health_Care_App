@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:gravity="center_horizontal"
+        android:text="Select your appointement purpose"
+        android:textSize="@dimen/default_title_size" />
+
+    <Spinner
+        android:id="@+id/spinnerBooking"
+        android:layout_width="299dp"
+        android:layout_height="46dp"
+
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginRight="62dp"
+        android:layout_marginBottom="293dp"
+        android:background="#ffffff"
+        android:paddingLeft="20dp"
+        android:prompt="@string/common_google_play_services_update_text"
+        android:spinnerMode="dropdown" />
+</RelativeLayout>

@@ -15,6 +15,7 @@ public class HomeActivity extends AppCompatActivity {
     Button searchPatBtn;
     Button myDoctors;
     Button BtnRequst;
+    Button profilebtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,5 +58,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        profilebtn = findViewById(R.id.profile);
+        profilebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(HomeActivity.this, TestActivity.class);
+                startActivity(k);
+            }
+        });
     }
 }
