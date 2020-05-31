@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctorsAdapter.MyDoctorsHolder> {
+public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctorsAdapter.MyDoctorAppointementHolder> {
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.
@@ -30,7 +30,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull MyDoctorsHolder myDoctorsHolder, int position, @NonNull final Doctor doctor) {
+    protected void onBindViewHolder(@NonNull MyDoctorAppointementHolder myDoctorsHolder, int position, @NonNull final Doctor doctor) {
         myDoctorsHolder.textViewTitle.setText(doctor.getName());
         myDoctorsHolder.textViewDescription.setText("Specialite : "+doctor.getSpecialite());
         myDoctorsHolder.sendMessageButton.setOnClickListener(new View.OnClickListener() {
@@ -50,19 +50,19 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
 
     @NonNull
     @Override
-    public MyDoctorsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyDoctorAppointementHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_doctor_item, parent, false);
-        return new MyDoctorsHolder(v);
+        return new MyDoctorAppointementHolder(v);
     }
 
-    class MyDoctorsHolder extends RecyclerView.ViewHolder{
+    class MyDoctorAppointementHolder extends RecyclerView.ViewHolder{
         //Here we hold the MyDoctorItems
         TextView textViewTitle;
         TextView textViewDescription;
         TextView textViewStatus;
         ImageView imageViewDoctor;
         Button sendMessageButton;
-        public MyDoctorsHolder(@NonNull View itemView) {
+        public MyDoctorAppointementHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.doctor_view_title);
             textViewDescription = itemView.findViewById(R.id.text_view_description);

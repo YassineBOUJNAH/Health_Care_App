@@ -14,12 +14,16 @@ public class DoctorHomeActivity extends AppCompatActivity {
     Button SignOutBtn2;
     Button BtnRequst;
     Button listPatients;
+    Button appointement;
+    Button profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home); //ici layout de page d'acceuil MEDECIN
         listPatients = findViewById(R.id.listPatients);
+        appointement = findViewById(R.id.appointement);
+        profile = findViewById(R.id.profile);
         BtnRequst=findViewById(R.id.btnRequst);
         SignOutBtn2=findViewById(R.id.signOutBtn);
         SignOutBtn2.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +46,20 @@ public class DoctorHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent k = new Intent(DoctorHomeActivity.this, MyPatientsActivity.class);
+                startActivity(k);
+            }
+        });
+        appointement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(DoctorHomeActivity.this, DoctorAppointementActivity.class);
+                startActivity(k);
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(DoctorHomeActivity.this, ProfileDoctorActivity.class);
                 startActivity(k);
             }
         });

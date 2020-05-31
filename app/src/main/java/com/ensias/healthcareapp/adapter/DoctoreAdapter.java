@@ -62,12 +62,22 @@ public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdap
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Snackbar.make(t, "Doctor interface entraint de realisation", Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(t, "Demande envoyée", Snackbar.LENGTH_SHORT).show();
                             }
                         });
                 doctoreHolder.addDoc.setVisibility(View.INVISIBLE);
             }
         });
+        doctoreHolder.appointemenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doc= doctor.getEmail();
+                showDatePickerDialog(v.getContext());
+                //openPage(v.getContext(),doctor);
+            }
+        });
+
+
         doctoreHolder.appointemenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +104,7 @@ public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdap
         TextView specialite;
         ImageView image;
         Button addDoc;
+        Button load;
         public DoctoreHolder(@NonNull View itemView) {
             super(itemView);
             addDoc = itemView.findViewById(R.id.addDocBtn);
