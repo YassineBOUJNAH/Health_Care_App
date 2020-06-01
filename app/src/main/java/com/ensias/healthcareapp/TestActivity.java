@@ -164,8 +164,8 @@ public class TestActivity extends AppCompatActivity {
 
     private void setupStepView() {
         List<String> stepList = new ArrayList<>();
-        stepList.add("Time");
-        stepList.add("Confirm");
+        stepList.add("Purpose");
+        stepList.add("Tme and Date");
         stepList.add("finish");
         stepView.setSteps(stepList);
 
