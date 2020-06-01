@@ -20,8 +20,10 @@ import android.widget.Toast;
 import com.ensias.healthcareapp.Common.Common;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.ApointementInformation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -60,6 +62,8 @@ public class BookingStep3Fragment extends Fragment {
         apointementInformation.setDoctorName(Common.CurrentDoctorName);
         apointementInformation.setPatientName(Common.CurrentUserName);
         apointementInformation.setPatientId(Common.CurrentUserid);
+        apointementInformation.setChemin("Doctor/"+Common.CurreentDoctor+"/"+Common.simpleFormat.format(Common.currentDate.getTime())+"/"+String.valueOf(Common.currentTimeSlot));
+        apointementInformation.setType("Checked");
         apointementInformation.setTime(new StringBuilder(Common.convertTimeSlotToString(Common.currentTimeSlot))
                 .append("at")
                 .append(simpleDateFormat.format(Common.currentDate.getTime())).toString());
@@ -80,12 +84,18 @@ public class BookingStep3Fragment extends Fragment {
                         Common.currentTimeSlot = -1;
                         Common.currentDate = Calendar.getInstance();
                         Common.step = 0;
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getContext(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        }).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+
+
             }
         });
 

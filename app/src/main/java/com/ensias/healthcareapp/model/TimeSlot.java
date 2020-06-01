@@ -2,7 +2,7 @@ package com.ensias.healthcareapp.model;
 
 public class TimeSlot {
     private Long slot;
-    private String type = "Checked";
+    private String type ;
 
     public String getType() {
         return type;

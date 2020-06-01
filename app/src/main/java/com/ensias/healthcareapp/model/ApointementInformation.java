@@ -1,8 +1,24 @@
 package com.ensias.healthcareapp.model;
 
 public class ApointementInformation {
-    private  String patientName,time,doctorId,doctorName,patientId;
+    private  String patientName,time,doctorId,doctorName,patientId,type,chemin;
     private long slot;
+
+    public String getChemin() {
+        return chemin;
+    }
+
+    public void setChemin(String chemin) {
+        this.chemin = chemin;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getPatientId() {
         return patientId;
