@@ -83,7 +83,7 @@ public class BookingStep3Fragment extends Fragment {
                 Toast.makeText(getContext(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-
+//
     }
 
 
