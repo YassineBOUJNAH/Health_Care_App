@@ -49,6 +49,16 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
                 getSnapshots().getSnapshot(position).getReference().delete();
             }
         });
+        myDoctorAppointementHolder.cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                apointementInformation.setType("Refused");
+                FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()).collection("calendar")
+                        .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
+                FirebaseFirestore.getInstance().document(apointementInformation.getChemin()).delete();
+                getSnapshots().getSnapshot(position).getReference().delete();
+            }
+        });
 
     }
 
