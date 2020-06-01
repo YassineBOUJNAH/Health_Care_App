@@ -18,11 +18,14 @@ import com.google.android.material.tabs.TabLayout;
 public class DossierMedical extends AppCompatActivity {
     private final static String TAG = "DossierMedical";
     private FloatingActionButton createNewFicheButton;
+    private String patient_email;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dossier_medical);
+        patient_email = getIntent().getStringExtra("patient_email");
         this.configureViewPager();
 
         Log.d(TAG, "onCreate dossier medical activity: started");

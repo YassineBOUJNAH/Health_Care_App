@@ -25,7 +25,6 @@ public class ConsultationFragmentPage extends Fragment {
     private ConsultationAdapter adapter;
     View result;
 
-
     public ConsultationFragmentPage() {
         // Required empty public constructor
     }
@@ -47,7 +46,8 @@ public class ConsultationFragmentPage extends Fragment {
 
     private void setUpRecyclerView() {
 
-        FicheRef = db.collection("Patient").document(FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()).collection("MyMedicalFolder");
+        String email_id = getActivity().getIntent().getExtras().getString("patient_email");
+        FicheRef = db.collection("Patient").document(email_id).collection("MyMedicalFolder");
         Query query = FicheRef.whereEqualTo("type", "Consultation").orderBy("dateCreated", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Fiche> options = new FirestoreRecyclerOptions.Builder<Fiche>()

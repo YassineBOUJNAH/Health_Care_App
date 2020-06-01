@@ -48,6 +48,7 @@ public class PatRequestAdapter extends FirestoreRecyclerAdapter<Request, PatRequ
         final TextView t = RequestHolder.title ;
         final String idPat = request.getId_patient();
         final String idDoc = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        final String HourPath = request.getHour_path();
 
         db.collection("Doctor").document(idDoc).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -73,6 +74,7 @@ public class PatRequestAdapter extends FirestoreRecyclerAdapter<Request, PatRequ
                                         }
                                     }
                                 });
+                                db.document(HourPath).update("choosen","true");
                                 Snackbar.make(t, "Patient added", Snackbar.LENGTH_SHORT).show();
                                 RequestHolder.addDoc.setVisibility(View.INVISIBLE);
 
@@ -87,6 +89,8 @@ public class PatRequestAdapter extends FirestoreRecyclerAdapter<Request, PatRequ
     }
 
     public void deleteItem(int position) {
+        String hour =getSnapshots().getSnapshot(position).getString("hour_path");
+        db.document(hour).delete();
         getSnapshots().getSnapshot(position).getReference().delete();
     }
 

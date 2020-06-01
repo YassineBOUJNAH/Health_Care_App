@@ -4,16 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.ensias.healthcareapp.Common.Common;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
     Button SignOutBtn;
     Button searchPatBtn;
     Button myDoctors;
     Button BtnRequst;
+    Button profilebtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +57,25 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DossierMedical.class);
-//Current user intent (add extra)
+                intent.putExtra("patient_email",FirebaseAuth.getInstance().getCurrentUser().getEmail().toString());
                 startActivity(intent);
+            }
+        });
+
+        profilebtn = findViewById(R.id.profile);
+        profilebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(HomeActivity.this, TestActivity.class);
+                startActivity(k);
+            }
+        });
+
+        Common.CurrentUserid= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        FirebaseFirestore.getInstance().collection("User").document(Common.CurrentUserid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Common.CurrentUserName = documentSnapshot.getString("name");
             }
         });
 
