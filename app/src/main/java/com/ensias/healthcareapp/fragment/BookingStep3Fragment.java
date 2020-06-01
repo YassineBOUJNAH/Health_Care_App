@@ -58,6 +58,7 @@ public class BookingStep3Fragment extends Fragment {
     @OnClick(R.id.btn_confirm)
     void confirmeApointement(){
         ApointementInformation apointementInformation = new ApointementInformation();
+        apointementInformation.setApointementType(Common.Currentaappointementatype);
         apointementInformation.setDoctorId(Common.CurreentDoctor);
         apointementInformation.setDoctorName(Common.CurrentDoctorName);
         apointementInformation.setPatientName(Common.CurrentUserName);
@@ -93,8 +94,10 @@ public class BookingStep3Fragment extends Fragment {
         }).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
-
+                FirebaseFirestore.getInstance().collection("Doctor").document(Common.CurreentDoctor)
+                        .collection("apointementrequest").document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
+                FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()).collection("calendar")
+                        .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
 
             }
         });

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.ensias.healthcareapp.adapter.DoctorAppointementAdapter;
 import com.ensias.healthcareapp.adapter.MyDoctorsAdapter;
+import com.ensias.healthcareapp.model.ApointementInformation;
 import com.ensias.healthcareapp.model.Doctor;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,11 +32,11 @@ public class DoctorAppointementActivity extends Activity {
         //Get the doctors by patient id
         final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         Query query = doctorAppointementRef.document(""+doctorID+"")
-                .collection("calendar").document("month_day_year: 4_29_2020"
-).collection("hour").orderBy("patient", Query.Direction.DESCENDING);
+                .collection("apointementrequest")
+                .orderBy("time", Query.Direction.DESCENDING);
 
-        FirestoreRecyclerOptions<Doctor> options = new FirestoreRecyclerOptions.Builder<Doctor>()
-                .setQuery(query, Doctor.class)
+        FirestoreRecyclerOptions<ApointementInformation> options = new FirestoreRecyclerOptions.Builder<ApointementInformation>()
+                .setQuery(query, ApointementInformation.class)
                 .build();
 
         adapter = new DoctorAppointementAdapter(options);
