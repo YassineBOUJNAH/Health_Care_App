@@ -1,9 +1,27 @@
 package com.ensias.healthcareapp.Common;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Common {
     public static final String KEY_DISPLAY_TIME_SLOT = "DISPLAY_TIME_SLOT";
+
+    public static final Object DISABLE_TAG = "DISABLE";
+    public static final String KEY_ENABLE_BUTTON_NEXT = "ENABLE_BUTTON_NEXT";
+    public static final String KEY_TIME_SLOT = "TIME_SLOT" ;
+    public static final String KEY_STEP = "STEP" ;
+    public static final String KEY_CONFIRM_BOOKING = "CONFIRM_BOOKING" ;
+    public static String CurrentUserid ;
+    public static  String CurrentUserName;
+
     public static int step = 0;
     public static String CurreentDoctor = "testdoc@testdoc.com";
+    public static String Currentaappointementatype;
+    public static int currentTimeSlot = -1;
+    public static String CurrentDoctorName = "yassine";
+    public static Calendar currentDate = Calendar.getInstance();
+    public static String CurrentPhone = "062912361255";
+    public static SimpleDateFormat simpleFormat = new SimpleDateFormat("dd_MM_yyyy");
 
     public static String convertTimeSlotToString(int slot) {
         switch(slot) {

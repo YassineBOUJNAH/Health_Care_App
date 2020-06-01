@@ -56,7 +56,7 @@ public class BookingStep2Fragment extends Fragment implements ITimeSlotLoadListe
 
     Unbinder unbinder;
     LocalBroadcastManager localBroadcastManager;
-    Calendar selected_data;
+
 
     @BindView(R.id.recycle_time_slot)
     RecyclerView recycler_time_slot;
@@ -139,8 +139,7 @@ public class BookingStep2Fragment extends Fragment implements ITimeSlotLoadListe
         simpleDateFormat = new SimpleDateFormat("dd_MM_yyyy");
 
         dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).build();
-        selected_data = Calendar.getInstance();
-        selected_data.add(Calendar.DATE,0);
+
     }
 
     @Override
@@ -157,7 +156,7 @@ public class BookingStep2Fragment extends Fragment implements ITimeSlotLoadListe
         unbinder = ButterKnife.bind(this,itemView);
 
         init(itemView);
-        loadAvailabelTimeSlotOfDoctor(Common.CurreentDoctor,simpleDateFormat.format(selected_data.getTime()));
+        loadAvailabelTimeSlotOfDoctor(Common.CurreentDoctor,simpleDateFormat.format(Common.currentDate.getTime()));
 
         return itemView;
 
@@ -183,9 +182,10 @@ public class BookingStep2Fragment extends Fragment implements ITimeSlotLoadListe
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
-                if(selected_data.getTimeInMillis() != date.getTimeInMillis()){
-                    selected_data = date;
+                if(Common.currentDate.getTimeInMillis() != date.getTimeInMillis()){
+                    Common.currentDate = date;
                     loadAvailabelTimeSlotOfDoctor(Common.CurreentDoctor,simpleDateFormat.format(date.getTime()));
+
                 }
 
             }

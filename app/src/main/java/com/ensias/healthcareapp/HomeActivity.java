@@ -8,7 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.ensias.healthcareapp.Common.Common;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
     Button SignOutBtn;
@@ -66,5 +70,14 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(k);
             }
         });
+
+        Common.CurrentUserid= FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        FirebaseFirestore.getInstance().collection("User").document(Common.CurrentUserid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Common.CurrentUserName = documentSnapshot.getString("name");
+            }
+        });
+
     }
 }

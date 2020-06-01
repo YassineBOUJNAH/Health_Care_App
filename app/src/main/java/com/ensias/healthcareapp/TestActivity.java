@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +21,9 @@ import com.shuhart.stepview.StepView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Unbinder;
+
+import static com.ensias.healthcareapp.Common.Common.step;
 import static com.ensias.healthcareapp.fragment.BookingStep1Fragment.spinner;
 
 public class TestActivity extends AppCompatActivity {
@@ -26,6 +32,20 @@ public class TestActivity extends AppCompatActivity {
     NonSwipeViewPager viewPager;
     Button btn_previous_step;
     Button btn_next_step;
+    Unbinder unbinder;
+    LocalBroadcastManager localBroadcastManager;
+    private BroadcastReceiver buttonNextReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if(step == 2){
+                Common.currentTimeSlot = intent.getIntExtra(Common.KEY_TIME_SLOT,-1);
+            }
+            btn_next_step.setEnabled(true);
+            setColorButton();
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +59,9 @@ public class TestActivity extends AppCompatActivity {
 
         setupStepView();
         setColorButton();
+
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        localBroadcastManager.registerReceiver(buttonNextReceiver, new IntentFilter(Common.KEY_ENABLE_BUTTON_NEXT));
 
         viewPager.setAdapter(new MyViewPagerAdapter(getSupportFragmentManager()));
         viewPager.setOffscreenPageLimit(2);
@@ -73,20 +96,31 @@ public class TestActivity extends AppCompatActivity {
         btn_next_step.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Common.step < 3 || Common.step == 0 ){
-                    Common.step++ ;
-                    viewPager.setCurrentItem(Common.step);
-                    Common.CurreentDoctor=spinner.getSelectedItem().toString();
-                    Log.e("Spinnr", Common.CurreentDoctor);
+                if(step < 3 || step == 0 ){
+                    step++ ;
+                    Common.Currentaappointementatype=spinner.getSelectedItem().toString();
+                    Log.e("Spinnr", Common.Currentaappointementatype);
+
+                    if(step==1){
+                        if(Common.CurreentDoctor != null)
+                            loadTimeSlotOfDoctor(Common.CurreentDoctor);
+                    }
+                    else if(step == 2){
+                        if(Common.currentTimeSlot != -1)
+                            confirmeBooking();
+                    }
+                    viewPager.setCurrentItem(step);
                 }
+
+
             }
         });
         btn_previous_step.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Common.step == 3 || Common.step > 0 ){
-                    Common.step-- ;
-                    viewPager.setCurrentItem(Common.step);
+                if(step == 3 || step > 0 ){
+                    step-- ;
+                    viewPager.setCurrentItem(step);
                 }
             }
         });
@@ -94,9 +128,23 @@ public class TestActivity extends AppCompatActivity {
         loadTimeSlotOfDoctor("testdoc@testdoc.com");
     }
 
+
+
+    private void confirmeBooking() {
+
+        Intent intent = new Intent(Common.KEY_CONFIRM_BOOKING);
+        localBroadcastManager.sendBroadcast(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        localBroadcastManager.unregisterReceiver(buttonNextReceiver);
+        super.onDestroy();
+    }
+
     private void loadTimeSlotOfDoctor(String doctorId) {
         Intent intent = new Intent(Common.KEY_DISPLAY_TIME_SLOT);
-        //LocalBroadcastManager.sendBroadcast(intent);
+        localBroadcastManager.sendBroadcast(intent);
     }
 
     private void setColorButton() {
