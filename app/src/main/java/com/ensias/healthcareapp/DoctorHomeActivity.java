@@ -9,11 +9,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
 
 public class DoctorHomeActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     static String doc;
@@ -21,10 +27,21 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
     Button BtnRequst;
     Button listPatients;
     Button appointementBtn;
+
+    Unbinder unbinder;
+
+    @OnClick(R.id.myCalendarBtn)
+    void myCalendarOnclick() {
+        Toast.makeText(this,"clicked",Toast.LENGTH_SHORT).show();
+        Intent k = new Intent(DoctorHomeActivity.this, MyCalendarDoctorActivity.class);
+        startActivity(k);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home); //ici layout de page d'acceuil MEDECIN
+        unbinder = ButterKnife.bind(this,this);
         listPatients = findViewById(R.id.listPatients);
         BtnRequst=findViewById(R.id.btnRequst);
         SignOutBtn2=findViewById(R.id.signOutBtn);
