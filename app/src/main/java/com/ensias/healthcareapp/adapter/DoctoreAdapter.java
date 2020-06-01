@@ -19,8 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ensias.healthcareapp.AppointementActivity;
 import com.ensias.healthcareapp.ChatActivity;
+import com.ensias.healthcareapp.Common.Common;
+import com.ensias.healthcareapp.HomeActivity;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.SearchPatActivity;
+import com.ensias.healthcareapp.TestActivity;
 import com.ensias.healthcareapp.model.Doctor;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -35,7 +38,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdapter.DoctoreHolder> implements DatePickerDialog.OnDateSetListener {
+public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdapter.DoctoreHolder> {
     static String doc;
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static CollectionReference addRequest = db.collection("Request");
@@ -72,20 +75,12 @@ public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdap
             @Override
             public void onClick(View v) {
                 doc= doctor.getEmail();
-                showDatePickerDialog(v.getContext());
-                //openPage(v.getContext(),doctor);
+                Common.CurreentDoctor = doctor.getEmail();
+                openPage(v.getContext());
+
             }
         });
 
-
-        doctoreHolder.appointemenBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doc= doctor.getEmail();
-                showDatePickerDialog(v.getContext());
-                //openPage(v.getContext(),doctor);
-            }
-        });
     }
 
 
@@ -114,27 +109,10 @@ public class DoctoreAdapter extends FirestoreRecyclerAdapter<Doctor, DoctoreAdap
             appointemenBtn=itemView.findViewById(R.id.appointemenBtn);
         }
     }
-    private void openPage(Context wf, String d,String day){
-        Intent i = new Intent(wf, AppointementActivity.class);
-        i.putExtra("key1",d+"");
-        i.putExtra("key2",day);
-        i.putExtra("key3","patient");
+    private void openPage(Context wf){
+        Intent i = new Intent(wf, TestActivity.class);
         wf.startActivity(i);
     }
 
-    public void showDatePickerDialog(Context wf){
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                wf,
-                this,
-                Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.show();
-    }
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = "month_day_year: " + month + "_" + dayOfMonth + "_" + year;
-        openPage(view.getContext(),doc,date);
-    }
 
 }

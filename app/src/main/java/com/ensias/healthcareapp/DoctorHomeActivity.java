@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.ensias.healthcareapp.Common.Common;
 import com.google.android.gms.common.SignInButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 
@@ -42,6 +44,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_home); //ici layout de page d'acceuil MEDECIN
         unbinder = ButterKnife.bind(this,this);
+        Common.CurreentDoctor = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         listPatients = findViewById(R.id.listPatients);
         BtnRequst=findViewById(R.id.btnRequst);
         SignOutBtn2=findViewById(R.id.signOutBtn);
