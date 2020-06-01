@@ -31,6 +31,7 @@ import com.google.protobuf.StringValue;
 import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,6 +77,10 @@ public class BookingStep3Fragment extends Fragment {
                     public void onSuccess(Void aVoid) {
                         getActivity().finish();
                         Toast.makeText(getContext(),"Success!",Toast.LENGTH_SHORT).show();
+                        Common.currentTimeSlot = -1;
+                        Common.currentDate = Calendar.getInstance();
+                        Common.step = 0;
+
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -83,6 +88,7 @@ public class BookingStep3Fragment extends Fragment {
                 Toast.makeText(getContext(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+
 //
     }
 

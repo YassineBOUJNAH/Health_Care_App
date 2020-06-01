@@ -19,6 +19,7 @@ import com.ensias.healthcareapp.adapter.MyViewPagerAdapter;
 import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import butterknife.Unbinder;
@@ -102,8 +103,11 @@ public class TestActivity extends AppCompatActivity {
                     Log.e("Spinnr", Common.Currentaappointementatype);
 
                     if(step==1){
-                        if(Common.CurreentDoctor != null)
+                        if(Common.CurreentDoctor != null) {
+                            Common.currentTimeSlot = -1;
+                            Common.currentDate = Calendar.getInstance();
                             loadTimeSlotOfDoctor(Common.CurreentDoctor);
+                        }
                     }
                     else if(step == 2){
                        // if(Common.currentTimeSlot != -1)
