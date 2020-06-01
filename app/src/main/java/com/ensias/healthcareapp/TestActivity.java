@@ -108,6 +108,7 @@ public class TestActivity extends AppCompatActivity {
                     else if(step == 2){
                         if(Common.currentTimeSlot != -1)
                             confirmeBooking();
+                        Log.e("comfirme", " " );
                     }
                     viewPager.setCurrentItem(step);
                 }

@@ -95,7 +95,7 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
 
                     Intent intent = new Intent(Common.KEY_ENABLE_BUTTON_NEXT);
                     intent.putExtra(Common.KEY_TIME_SLOT,position);
-                    intent.putExtra(Common.KEY_STEP,3);
+                    intent.putExtra(Common.KEY_STEP,2);
                     localBroadcastManager.sendBroadcast(intent);
                 }
             });
