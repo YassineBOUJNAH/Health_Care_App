@@ -2,6 +2,7 @@ package com.ensias.healthcareapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,7 +96,9 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
 
                     Intent intent = new Intent(Common.KEY_ENABLE_BUTTON_NEXT);
                     intent.putExtra(Common.KEY_TIME_SLOT,position);
+                    Common.currentTimeSlot = position ;
                     intent.putExtra(Common.KEY_STEP,2);
+                    Log.e("pos ", "onItemSelectedListener: "+position );
                     localBroadcastManager.sendBroadcast(intent);
                 }
             });

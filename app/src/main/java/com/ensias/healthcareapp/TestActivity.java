@@ -106,9 +106,8 @@ public class TestActivity extends AppCompatActivity {
                             loadTimeSlotOfDoctor(Common.CurreentDoctor);
                     }
                     else if(step == 2){
-                        if(Common.currentTimeSlot != -1)
+                       // if(Common.currentTimeSlot != -1)
                             confirmeBooking();
-                        Log.e("comfirme", " " );
                     }
                     viewPager.setCurrentItem(step);
                 }

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,6 @@ public class BookingStep3Fragment extends Fragment {
                 Toast.makeText(getContext(),""+e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
-        Toast.makeText(getContext(),"hello ",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -90,9 +90,11 @@ public class BookingStep3Fragment extends Fragment {
     BroadcastReceiver confirmBookingReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.e("TAG", "onReceive: heave been receiver" );
             setData();
         }
     };
+
 
     private void setData() {
         txt_booking_berber_text.setText(Common.CurrentDoctorName);
