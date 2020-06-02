@@ -10,4 +10,8 @@
 
     </style>
 
+    <style name="SearchViewStyle" >
+        <item name="android:editTextColor">#FFFFFF</item>
+    </style>
+
 </resources>
