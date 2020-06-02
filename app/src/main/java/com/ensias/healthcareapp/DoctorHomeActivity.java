@@ -45,6 +45,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
         setContentView(R.layout.activity_doctor_home); //ici layout de page d'acceuil MEDECIN
         unbinder = ButterKnife.bind(this,this);
         Common.CurreentDoctor = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        Common.CurrentUserType = "doctor";
         listPatients = findViewById(R.id.listPatients);
         BtnRequst=findViewById(R.id.btnRequst);
         SignOutBtn2=findViewById(R.id.signOutBtn);
