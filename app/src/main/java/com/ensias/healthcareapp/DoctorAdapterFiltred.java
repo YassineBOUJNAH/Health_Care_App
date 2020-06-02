@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFiltred.DoctoreHolder2> implements Filterable {
+    public static boolean specialiteSearch = false;
     static String doc;
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static CollectionReference addRequest = db.collection("Request");
@@ -101,8 +102,15 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
                 } else {
                     List<Doctor> filteredList = new ArrayList<>();
                     for(Doctor tube: mTubeList){
-                        if(tube.getName().toLowerCase().contains(pattern) || tube.getName().toLowerCase().contains(pattern)) {
-                            filteredList.add(tube);
+                        if(specialiteSearch == false) {
+                            if (tube.getName().toLowerCase().contains(pattern) || tube.getName().toLowerCase().contains(pattern)) {
+                                filteredList.add(tube);
+                            }
+                        }
+                        else{
+                            if (tube.getSpecialite().toLowerCase().contains(pattern) || tube.getSpecialite().toLowerCase().contains(pattern)) {
+                                filteredList.add(tube);
+                            }
                         }
                     }
                     mTubeListFiltered = filteredList;
