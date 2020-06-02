@@ -29,7 +29,11 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
     Button BtnRequst;
     Button listPatients;
     Button appointementBtn;
-
+    @OnClick(R.id.profile)
+    void profileBtnClick(){
+        Intent k = new Intent(DoctorHomeActivity.this, ProfileDoctorActivity.class);
+        startActivity(k);
+    }
     Unbinder unbinder;
 
     @OnClick(R.id.myCalendarBtn)

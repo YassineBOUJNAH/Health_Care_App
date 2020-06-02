@@ -23,7 +23,6 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home);
         searchPatBtn = (Button)findViewById(R.id.searchBtn);
         searchPatBtn.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +65,8 @@ public class HomeActivity extends AppCompatActivity {
         profilebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent k = new Intent(HomeActivity.this, TestActivity.class);
-                startActivity(k);
+                //Intent k = new Intent(HomeActivity.this, .class);
+                //startActivity(k);
             }
         });
 
