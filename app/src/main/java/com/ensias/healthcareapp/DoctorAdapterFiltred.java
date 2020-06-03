@@ -3,6 +3,7 @@ package com.ensias.healthcareapp;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ensias.healthcareapp.Common.Common;
 import com.ensias.healthcareapp.model.Doctor;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,6 +40,8 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
     static CollectionReference addRequest = db.collection("Request");
     private List<Doctor> mTubeList;
     private List<Doctor> mTubeListFiltered;
+    StorageReference pathReference ;
+
 
     public DoctorAdapterFiltred(List<Doctor> tubeList){
         mTubeList = tubeList;
@@ -54,6 +61,28 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
         final Doctor doctor = mTubeListFiltered.get(i);
         final TextView t = doctoreHolder.title ;
         doctoreHolder.title.setText(doctor.getName());
+        /// ajouter l'image
+
+        String imageId = doctor.getEmail()+".jpg";
+        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId);
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(doctoreHolder.image.getContext())
+                        .load(uri)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(doctoreHolder.image);//hna fin kayn Image view
+
+                // profileImage.setImageURI(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
         doctoreHolder.specialite.setText("Specialite : "+doctor.getSpecialite());
         final String idPat = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
         final String idDoc = doctor.getEmail();

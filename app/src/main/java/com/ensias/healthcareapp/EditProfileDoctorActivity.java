@@ -56,6 +56,9 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
     private DatabaseReference pDatabaseRef;
     private FirebaseFirestore doctorRef;
 
+    // Create a reference with an initial file path and name
+    StorageReference pathReference ;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,31 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
         doctorPhone = findViewById(R.id.phoneText);
         doctorEmail = findViewById(R.id.emailText);
         doctorAddress = findViewById(R.id.addressText);
+
+
+
+        //display profile image
+        String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId+".jpg");
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(EditProfileDoctorActivity.this)
+                        .load(uri)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(profileImage);//hna fin kayn Image view
+
+                // profileImage.setImageURI(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
 
         pStorageRef = FirebaseStorage.getInstance().getReference("DoctorProfile");
         pDatabaseRef = FirebaseDatabase.getInstance().getReference("DoctorProfile");
