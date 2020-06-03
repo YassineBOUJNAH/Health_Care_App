@@ -175,7 +175,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
     private void uploadProfileImage() {
         /* check if the image is not null */
         if (uriImage != null) {
-            StorageReference storageReference = pStorageRef.child(System.currentTimeMillis()
+            StorageReference storageReference = pStorageRef.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()
                     + "." + getFileExtension(uriImage));
             storageReference.putFile(uriImage).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
