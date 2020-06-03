@@ -2,6 +2,7 @@ package com.ensias.healthcareapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,9 @@ import android.widget.TextView;
 
 import com.ensias.healthcareapp.ChatActivity;
 import com.ensias.healthcareapp.DossierMedical;
+import com.ensias.healthcareapp.FicheInfo;
 import com.ensias.healthcareapp.R;
+import com.ensias.healthcareapp.model.Fiche;
 import com.ensias.healthcareapp.model.Patient;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -51,8 +54,18 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
 
             }
         });
+        myPatientsHolder.callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPage(myPatientsHolder.contactButton.getContext(),patient.getTel());
+            }
+        });
 
 
+    }
+    private void openPage(Context wf, String phoneNumber){
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+        wf.startActivity(intent);
     }
 
     private void openPatientMedicalFolder(Context medicalFolder, Patient patient){
@@ -78,6 +91,7 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
 
     class MyPatientsHolder extends RecyclerView.ViewHolder{
         //Here we hold the MyDoctorItems
+        Button callBtn;
         TextView textViewTitle;
         TextView textViewTelephone;
         ImageView imageViewPatient;
@@ -85,6 +99,7 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
         RelativeLayout parentLayout;
         public MyPatientsHolder(@NonNull View itemView) {
             super(itemView);
+            callBtn = itemView.findViewById(R.id.callBtn);
             textViewTitle = itemView.findViewById(R.id.patient_view_title);
             textViewTelephone = itemView.findViewById(R.id.text_view_telephone);
             imageViewPatient = itemView.findViewById(R.id.patient_item_image);
