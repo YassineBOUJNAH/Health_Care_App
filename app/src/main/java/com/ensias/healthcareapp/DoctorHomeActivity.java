@@ -66,7 +66,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
         BtnRequst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent k = new Intent(DoctorHomeActivity.this, PatientRequestPage.class);
+                Intent k = new Intent(DoctorHomeActivity.this, ConfirmedAppointmensActivity.class);
                 startActivity(k);
             }
         });

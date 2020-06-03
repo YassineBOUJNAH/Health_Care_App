@@ -26,6 +26,7 @@
         <activity android:name=".ProfilePatientActivity" />
         <activity android:name=".MyDoctorsAvtivity" />
         <activity android:name=".ProfileDoctorActivity" />
+        <activity android:name=".EditProfilePatientActivity" />
         <activity android:name=".DoctorAppointementActivity" />
         <activity android:name=".FicheActivity" />
         <activity android:name=".MyPatientsActivity" />
