@@ -104,13 +104,13 @@ public class ProfilePatientActivity extends AppCompatActivity {
     }
 
     private void startHomeActivity() {
-        Intent intent = new Intent(this, DoctorHomeActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
     }
 
     private void startEditActivity() {
-        Intent intent = new Intent(this, EditProfileDoctorActivity.class);
+        Intent intent = new Intent(this, EditProfilePatientActivity.class);
         intent.putExtra("CURRENT_NAME", doctorName.getText().toString());
         intent.putExtra("CURRENT_PHONE", doctorPhone.getText().toString());
         intent.putExtra("CURRENT_ADDRESS", doctorAddress.getText().toString());

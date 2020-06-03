@@ -1,10 +1,12 @@
 package com.ensias.healthcareapp;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.ensias.healthcareapp.adapter.ConfirmedAppointmentsAdapter;
-import com.ensias.healthcareapp.adapter.PatientAppointmentsAdapter;
+import com.ensias.healthcareapp.adapter.MyDoctorsAdapter;
 import com.ensias.healthcareapp.model.ApointementInformation;
+import com.ensias.healthcareapp.model.Doctor;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -15,15 +17,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PatientAppointementsActivity extends AppCompatActivity {
+public class ConfirmedAppointmensActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference myDoctorsRef = db.collection("Patient");
-    private PatientAppointmentsAdapter adapter;
+    private CollectionReference myDoctorsRef = db.collection("Doctor");
+    private ConfirmedAppointmentsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_patient_appointments);
+        setContentView(R.layout.activity_confirmed_appointements);
 
         setUpRecyclerView();
     }
@@ -38,9 +40,9 @@ public class PatientAppointementsActivity extends AppCompatActivity {
                 .setQuery(query, ApointementInformation.class)
                 .build();
 
-        adapter = new PatientAppointmentsAdapter(options);
+        adapter = new ConfirmedAppointmentsAdapter(options);
         //List current appointments
-        RecyclerView recyclerView = findViewById(R.id.patient_appointements);
+        RecyclerView recyclerView = findViewById(R.id.confirmed_appointements_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

@@ -29,6 +29,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
     Button BtnRequst;
     Button listPatients;
     Button appointementBtn;
+    Button profile;
 
     Unbinder unbinder;
 
@@ -49,6 +50,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
         BtnRequst=findViewById(R.id.btnRequst);
         SignOutBtn2=findViewById(R.id.signOutBtn);
         appointementBtn = findViewById(R.id.appointement);
+        profile = findViewById(R.id.profile);
         SignOutBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +63,7 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
         BtnRequst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent k = new Intent(DoctorHomeActivity.this, PatientRequestPage.class);
+                Intent k = new Intent(DoctorHomeActivity.this, ConfirmedAppointmensActivity.class);
                 startActivity(k);
             }
         });
@@ -78,6 +80,13 @@ public class DoctorHomeActivity extends AppCompatActivity implements DatePickerD
               // doc = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
                 //showDatePickerDialog(v.getContext());
                 Intent k = new Intent(DoctorHomeActivity.this, DoctorAppointementActivity.class);
+                startActivity(k);
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent k = new Intent(DoctorHomeActivity.this, ProfileDoctorActivity.class);
                 startActivity(k);
             }
         });
