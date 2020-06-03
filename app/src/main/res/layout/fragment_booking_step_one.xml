@@ -34,6 +34,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="170dp"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="120dp"
         android:alpha="0.7"
         app:srcCompat="@drawable/medcal_logo" />

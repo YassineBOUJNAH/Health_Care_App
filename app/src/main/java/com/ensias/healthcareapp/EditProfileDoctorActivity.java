@@ -76,7 +76,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
         updateProfile = findViewById(R.id.update);
         doctorName = findViewById(R.id.nameText);
         doctorPhone = findViewById(R.id.phoneText);
-        ///doctorEmail = findViewById(R.id.emailText);
+        //doctorEmail = findViewById(R.id.emailText);
         doctorAddress = findViewById(R.id.addressText);
 
         pStorageRef = FirebaseStorage.getInstance().getReference("DoctorProfile");
@@ -141,7 +141,6 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
             }
         });
     }
-
 
     /* Update the doctor info in the database */
     private void updateDoctorInfos(String name, String address, String phone) {

@@ -13,9 +13,12 @@ import com.ensias.healthcareapp.ChatActivity;
 import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.ApointementInformation;
 import com.ensias.healthcareapp.model.Doctor;
+import com.ensias.healthcareapp.model.Patient;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
@@ -45,6 +48,26 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
                 FirebaseFirestore.getInstance().document(apointementInformation.getChemin()).update("type","Accepted");
                 FirebaseFirestore.getInstance().collection("Doctor").document(apointementInformation.getDoctorId()).collection("calendar")
                         .document(apointementInformation.getTime().replace("/","_")).set(apointementInformation);
+
+//////////// here add patient friend to doctor
+
+                FirebaseFirestore.getInstance().document("Patient/"+apointementInformation.getPatientId()).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                FirebaseFirestore.getInstance().collection("Doctor").document(apointementInformation.getDoctorId()+"")
+                                        .collection("MyPatients").document(apointementInformation.getPatientId()).set(documentSnapshot.toObject(Patient.class));
+                            }
+                        });
+                FirebaseFirestore.getInstance().document("Doctor/"+apointementInformation.getDoctorId()).get()
+                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                FirebaseFirestore.getInstance().collection("Patient").document(apointementInformation.getPatientId()+"")
+                                        .collection("MyDoctors").document(apointementInformation.getPatientId()).set(documentSnapshot.toObject(Doctor.class));
+                            }
+                        });
+
 
                 getSnapshots().getSnapshot(position).getReference().delete();
             }

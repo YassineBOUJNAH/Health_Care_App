@@ -1,15 +1,20 @@
 package com.ensias.healthcareapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ensias.healthcareapp.model.Doctor;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -19,11 +24,16 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import dmax.dialog.SpotsDialog;
 
 public class ProfileDoctorActivity extends AppCompatActivity {
     private MaterialTextView doctorName;
@@ -32,6 +42,8 @@ public class ProfileDoctorActivity extends AppCompatActivity {
     private MaterialTextView doctorEmail;
     private MaterialTextView doctorAddress;
     private MaterialTextView doctorAbout;
+    private ImageView doctorImage;
+    StorageReference pathReference ;
     final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference docRef = db.collection("Doctor").document("" + doctorID + "");
@@ -42,12 +54,38 @@ public class ProfileDoctorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_doctor);
 
+        doctorImage = findViewById(R.id.imageView3);
         doctorName = findViewById(R.id.doctor_name);
         doctorSpe = findViewById(R.id.doctor_specialite);
         doctorPhone = findViewById(R.id.doctor_phone);
         doctorEmail = findViewById(R.id.doctor_email);
         doctorAddress = findViewById(R.id.doctor_address);
         doctorAbout = findViewById(R.id.doctor_about);
+        AlertDialog dialog = new SpotsDialog.Builder().setContext(this).setCancelable(true).build();
+        dialog.show();
+
+
+        //display profile image
+        String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId+".jpg");
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(ProfileDoctorActivity.this)
+                        .load(uri)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(doctorImage);//hna fin kayn Image view
+                dialog.dismiss();
+                // profileImage.setImageURI(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
 
         docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DoctorHomeActivity">
+    tools:context=".DoctorHomeActivity"
+    android:background="#FFFFFF">
+
 
     <!-- RECYCLER VIEW CONTAINER -->
     <LinearLayout
@@ -14,6 +16,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_above="@id/activity_mentor_chat_add_message_container">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#22BEA9">
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="30dp"
+                android:fontFamily="@font/courgette"
+                android:textColor="#FFFFFF"
+                android:text="Messages" />
+        </LinearLayout>
         <!-- RECYCLER VIEW -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_mentor_chat_recycler_view"
@@ -33,7 +49,7 @@
         <!-- TEXT MESSAGE EDIT TEXT -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="36dp">
+            android:layout_height="55dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/activity_mentor_chat_message_edit_text"

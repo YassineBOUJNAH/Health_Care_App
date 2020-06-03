@@ -142,6 +142,7 @@ public class TestActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        step = 0 ;
         localBroadcastManager.unregisterReceiver(buttonNextReceiver);
         super.onDestroy();
     }

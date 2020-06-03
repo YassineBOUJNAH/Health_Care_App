@@ -3,6 +3,15 @@ package com.ensias.healthcareapp.model;
 public class TimeSlot {
     private Long slot;
     private String type ;
+    private String chemin;
+
+    public String getChemin() {
+        return chemin;
+    }
+
+    public void setChemin(String chemin) {
+        this.chemin = chemin;
+    }
 
     public String getType() {
         return type;

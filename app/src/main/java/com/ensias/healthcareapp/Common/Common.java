@@ -13,7 +13,7 @@ public class Common {
     public static final String KEY_CONFIRM_BOOKING = "CONFIRM_BOOKING" ;
     public static String CurrentUserid ;
     public static  String CurrentUserName;
-
+    public static String CurrentUserType = "patient";
     public static int step = 0;
     public static String CurreentDoctor = "testdoc@testdoc.com";
     public static String Currentaappointementatype;
