@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:text=""
             android:layout_gravity="right"
-            android:fontFamily="@font/courgette"
+            android:fontFamily="@font/roboto"
             android:background="@drawable/rounded_message"
             android:textSize="18dp"
             android:shadowRadius="@android:integer/config_shortAnimTime"/>
