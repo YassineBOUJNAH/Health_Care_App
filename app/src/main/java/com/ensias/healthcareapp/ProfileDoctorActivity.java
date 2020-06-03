@@ -3,6 +3,7 @@ package com.ensias.healthcareapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -24,7 +25,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
-
 public class ProfileDoctorActivity extends AppCompatActivity {
     private MaterialTextView doctorName;
     private MaterialTextView doctorSpe;
@@ -34,8 +34,7 @@ public class ProfileDoctorActivity extends AppCompatActivity {
     private MaterialTextView doctorAbout;
     final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference docRef = db.collection("Doctor").document(""+doctorID+"");
-
+    DocumentReference docRef = db.collection("Doctor").document("" + doctorID + "");
 
 
     @Override
@@ -104,14 +103,17 @@ public class ProfileDoctorActivity extends AppCompatActivity {
         }
     }
 
-    private void startHomeActivity(){
+    private void startHomeActivity() {
         Intent intent = new Intent(this, DoctorHomeActivity.class);
         startActivity(intent);
         finish();
     }
 
-    private void startEditActivity(){
+    private void startEditActivity() {
         Intent intent = new Intent(this, EditProfileDoctorActivity.class);
+        intent.putExtra("CURRENT_NAME", doctorName.getText().toString());
+        intent.putExtra("CURRENT_PHONE", doctorPhone.getText().toString());
+        intent.putExtra("CURRENT_ADDRESS", doctorAddress.getText().toString());
         startActivity(intent);
         finish();
     }

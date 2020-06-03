@@ -3,6 +3,7 @@ package com.ensias.healthcareapp;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.ensias.healthcareapp.model.UploadImage;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,8 +27,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -48,13 +53,17 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
     private TextInputEditText doctorEmail;
     private TextInputEditText doctorPhone;
     private TextInputEditText doctorAddress;
-    final String currentDoctorUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    final String currentDoctorUID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     private Uri uriImage;
 
     private StorageReference pStorageRef;
     private DatabaseReference pDatabaseRef;
     private FirebaseFirestore doctorRef;
+    private StorageReference pathReference;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    private StorageReference storageRef = storage.getReference();
+    private DatabaseReference currentUserImg;
 
 
     @Override
@@ -67,11 +76,50 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
         updateProfile = findViewById(R.id.update);
         doctorName = findViewById(R.id.nameText);
         doctorPhone = findViewById(R.id.phoneText);
-        doctorEmail = findViewById(R.id.emailText);
+        ///doctorEmail = findViewById(R.id.emailText);
         doctorAddress = findViewById(R.id.addressText);
 
         pStorageRef = FirebaseStorage.getInstance().getReference("DoctorProfile");
         pDatabaseRef = FirebaseDatabase.getInstance().getReference("DoctorProfile");
+
+        //get the default doctor's informations from ProfileDoctorActivity
+        Intent intent = getIntent(); //get the current intent
+        String current_name = intent.getStringExtra("CURRENT_NAME");
+        String current_phone = intent.getStringExtra("CURRENT_PHONE");
+        String current_address = intent.getStringExtra("CURRENT_ADDRESS");
+
+        //Set the default informtions in he text fields
+        doctorName.setText(current_name);
+        doctorPhone.setText(current_phone);
+        doctorAddress.setText(current_address);
+        /*
+        currentUserImg = FirebaseDatabase.getInstance().getReference("DoctorProfile").child("1590965871687");
+        Glide.with(this)
+                .load(currentUserImg)
+                .into(profileImage);
+                   */
+        String userPhotoPath = currentDoctorUID + ".jpg";
+        pathReference = storageRef.child("DoctorProfile/" + userPhotoPath); //Doctor photo in database
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(EditProfileDoctorActivity.this)
+                        .load(uri)
+                        .placeholder(R.drawable.doctor)
+                        .fit()
+                        .centerCrop()
+                        .into(profileImage);//Store here the imageView
+
+                // profileImage.setImageURI(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+                Toast.makeText(EditProfileDoctorActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
 
         selectImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,31 +134,32 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String updateAddress = doctorAddress.getText().toString();
                 String updateName = doctorName.getText().toString();
-                String updateEmail = doctorEmail.getText().toString();
+                //String updateEmail = doctorEmail.getText().toString();
                 String updatePhone = doctorPhone.getText().toString();
                 uploadProfileImage();
-                updateDoctorInfos(updateName, updateAddress, updateEmail, updatePhone);
+                updateDoctorInfos(updateName, updateAddress, updatePhone);
             }
         });
     }
 
+
     /* Update the doctor info in the database */
-    private void updateDoctorInfos(String name, String address, String email, String phone){
-        DocumentReference documentReference = doctorRef.collection("Doctor").document(""+doctorID+"");
+    private void updateDoctorInfos(String name, String address, String phone) {
+        DocumentReference documentReference = doctorRef.collection("Doctor").document("" + doctorID + "");
         documentReference.update("adresse", address);
-        documentReference.update("email", email);
+        //documentReference.update("email", email);
         documentReference.update("name", name);
         documentReference.update("tel", phone)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(EditProfileDoctorActivity.this,"Infos Updated",Toast.LENGTH_LONG).show();
+                        Toast.makeText(EditProfileDoctorActivity.this, "Infos Updated", Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(EditProfileDoctorActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(EditProfileDoctorActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         Log.d("Androidview", e.getMessage());
                     }
                 });
@@ -147,7 +196,7 @@ public class EditProfileDoctorActivity extends AppCompatActivity {
     private void uploadProfileImage() {
         /* check if the image is not null */
         if (uriImage != null) {
-            StorageReference storageReference = pStorageRef.child(System.currentTimeMillis()
+            StorageReference storageReference = pStorageRef.child(currentDoctorUID
                     + "." + getFileExtension(uriImage));
             storageReference.putFile(uriImage).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override

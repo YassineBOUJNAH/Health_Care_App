@@ -33,7 +33,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name"
-
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
@@ -58,16 +57,16 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email"
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:hint="Enter your name"
+        android:hint="Enter your phone"
         android:textColorHint="#22BE87"
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="#22BE87"
@@ -76,39 +75,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintVertical_bias="0.112">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/phone"
-
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:hint="Enter your name"
-        android:textColorHint="#22BE87"
-        app:boxBackgroundMode="outline"
-        app:boxStrokeColor="#22BE87"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.144">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/phoneText"
             android:layout_width="match_parent"
+            android:inputType="number"
             android:layout_height="wrap_content"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -121,7 +94,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:hint="Enter your name"
+        android:hint="Enter your address"
         android:textColorHint="#22BE87"
         app:boxBackgroundMode="outline"
         app:boxStrokeColor="#22BE87"
