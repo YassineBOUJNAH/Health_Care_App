@@ -48,7 +48,7 @@ public class ConsultationFragmentPage extends Fragment {
 
         String email_id = getActivity().getIntent().getExtras().getString("patient_email");
         FicheRef = db.collection("Patient").document(email_id).collection("MyMedicalFolder");
-        Query query = FicheRef.whereEqualTo("type", "Consultation").orderBy("dateCreated", Query.Direction.DESCENDING);
+        Query query = FicheRef.whereEqualTo("type", "Consultation");
 
         FirestoreRecyclerOptions<Fiche> options = new FirestoreRecyclerOptions.Builder<Fiche>()
                 .setQuery(query, Fiche.class)

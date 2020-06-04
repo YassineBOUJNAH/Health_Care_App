@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ensias.healthcareapp.Common.Common;
 import com.ensias.healthcareapp.adapter.ConsultationFragmentAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -38,6 +39,9 @@ public class DossierMedical extends AppCompatActivity {
                 openPatientFiche();
             }
         });
+        if(Common.CurrentUserType.equals("patient")){
+            createNewFicheButton.setVisibility(View.GONE);
+        }
 
 
     }
