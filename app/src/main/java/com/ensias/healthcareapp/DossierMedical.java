@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.ensias.healthcareapp.Common.Common;
@@ -20,6 +21,7 @@ public class DossierMedical extends AppCompatActivity {
     private final static String TAG = "DossierMedical";
     private FloatingActionButton createNewFicheButton;
     private String patient_email;
+    private Button infobtn;
 
 
     @Override
@@ -42,6 +44,13 @@ public class DossierMedical extends AppCompatActivity {
         if(Common.CurrentUserType.equals("patient")){
             createNewFicheButton.setVisibility(View.GONE);
         }
+        infobtn= findViewById(R.id.infobtn);
+        infobtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPatientInfo();
+            }
+        });
 
 
     }
@@ -98,6 +107,15 @@ public class DossierMedical extends AppCompatActivity {
 
     private void openPatientFiche(){
         Intent intent = new Intent(this, FicheActivity.class);
+        String patient_name = getIntent().getStringExtra("patient_name");
+        String patient_email = getIntent().getStringExtra("patient_email");
+        intent.putExtra("patient_email", patient_email);
+        intent.putExtra("patient_name", patient_name);
+        startActivity(intent);
+    }
+
+    private void openPatientInfo(){
+        Intent intent = new Intent(this, PatientInfoActivity.class);
         String patient_name = getIntent().getStringExtra("patient_name");
         String patient_email = getIntent().getStringExtra("patient_email");
         intent.putExtra("patient_email", patient_email);

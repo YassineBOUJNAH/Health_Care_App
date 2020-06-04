@@ -58,36 +58,6 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#000000" />
 
-        <EditText
-            android:id="@+id/editText4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/patient_name"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="228dp"
-            android:layout_marginLeft="228dp"
-            android:layout_marginTop="0dp"
-            android:inputType="number"
-            android:hint="Height"
-            android:textColorHint="#b8b8b8"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
-        <EditText
-            android:id="@+id/editText5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="228dp"
-            android:layout_marginLeft="228dp"
-            android:inputType="number"
-            android:hint="Weight"
-            android:textColorHint="#b8b8b8"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
             android:layout_width="wrap_content"
@@ -102,6 +72,23 @@
             android:scaleType="center"
             app:backgroundTint="@color/colorPrimaryDark"
             app:srcCompat="@android:drawable/ic_menu_edit" />
+
+        <Button
+            android:id="@+id/infobtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="91dp"
+            android:layout_marginRight="91dp"
+            android:clickable="true"
+            android:scaleType="center"
+            android:text="physical info"
+            app:backgroundTint="@color/colorAccent" />
 
 
     </RelativeLayout>

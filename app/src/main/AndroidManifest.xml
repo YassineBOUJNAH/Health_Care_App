@@ -17,6 +17,7 @@
         <activity android:name=".TestActivity" />
         <activity android:name=".AppointementActivity" />
         <activity android:name=".FicheInfo" />
+        <activity android:name=".PatientInfoActivity" />
         <activity android:name=".DossierMedical" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".PatientRequestPage" />
