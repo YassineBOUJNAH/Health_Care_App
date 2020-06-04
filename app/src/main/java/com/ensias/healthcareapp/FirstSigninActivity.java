@@ -17,20 +17,23 @@ import com.ensias.healthcareapp.fireStoreApi.DoctorHelper;
 import com.ensias.healthcareapp.fireStoreApi.PatientHelper;
 import com.ensias.healthcareapp.fireStoreApi.UserHelper;
 
+import static android.widget.AdapterView.*;
+
 public class FirstSigninActivity extends AppCompatActivity {
     private static final String TAG = "FirstSigninActivity";
-    private EditText fullName ;
-    private EditText birthday ;
-    private EditText teL ;
+    private EditText fullName;
+    private EditText birthday;
+    private EditText teL;
     private Button btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_signin);
-        btn =(Button) findViewById(R.id.confirmeBtn);
-        fullName = (EditText)findViewById(R.id.firstSignFullName);
-        birthday = (EditText)findViewById(R.id.firstSignBirthDay);
-        teL = (EditText)findViewById(R.id.firstSignTel);
+        btn = (Button) findViewById(R.id.confirmeBtn);
+        fullName = (EditText) findViewById(R.id.firstSignFullName);
+        birthday = (EditText) findViewById(R.id.firstSignBirthDay);
+        teL = (EditText) findViewById(R.id.firstSignTel);
 
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -46,24 +49,46 @@ public class FirstSigninActivity extends AppCompatActivity {
                 R.array.specialite_spinner, android.R.layout.simple_spinner_item);
         adapterSpecialiteList.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         specialiteList.setAdapter(adapterSpecialiteList);
+        String newAccountType = spinner.getSelectedItem().toString();
+        /*
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (newAccountType.equals("Patient")) {
+                    specialiteList.setVisibility(View.GONE);
+                } else {
+                    specialiteList.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+
+            ;
+        });
+
+         */
+
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String fullname,birtDay,tel,type,specialite;
-                fullname=fullName.getText().toString();
-                birtDay=birthday.getText().toString();
-                tel=teL.getText().toString();
-                type=spinner.getSelectedItem().toString();
+                String fullname, birtDay, tel, type, specialite;
+                fullname = fullName.getText().toString();
+                birtDay = birthday.getText().toString();
+                tel = teL.getText().toString();
+                type = spinner.getSelectedItem().toString();
                 specialite = specialiteList.getSelectedItem().toString();
-                UserHelper.addUser(fullname,birtDay,tel,type);
-                if(type.equals("Patient")){
+                UserHelper.addUser(fullname, birtDay, tel, type);
+                if (type.equals("Patient")) {
                     PatientHelper.addPatient(fullname, "adress", tel);
-                    System.out.println("Add patient "+fullname+" to patient collection");
+                    System.out.println("Add patient " + fullname + " to patient collection");
 
-                }else{
-                    DoctorHelper.addDoctor(fullname,"adress",tel,specialite);
+                } else {
+                    DoctorHelper.addDoctor(fullname, "adress", tel, specialite);
                 }
                 Intent k = new Intent(FirstSigninActivity.this, MainActivity.class);
                 startActivity(k);
