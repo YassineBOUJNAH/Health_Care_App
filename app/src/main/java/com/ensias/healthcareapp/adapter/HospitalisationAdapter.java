@@ -2,6 +2,7 @@ package com.ensias.healthcareapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,12 @@ import com.ensias.healthcareapp.model.Fiche;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HospitalisationAdapter  extends FirestoreRecyclerAdapter<Fiche,HospitalisationAdapter.FicheHolder2> {
 
@@ -26,14 +33,26 @@ public class HospitalisationAdapter  extends FirestoreRecyclerAdapter<Fiche,Hosp
 
     @Override
     protected void onBindViewHolder(@NonNull FicheHolder2 holder, int position, @NonNull final Fiche model) {
-        holder.doctor_name.setText(model.getDoctor());
-        holder.type.setText(model.getType());
+        FirebaseFirestore.getInstance().document("Doctor/"+model.getDoctor()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                holder.doctor_name.setText(documentSnapshot.getString("name"));
+            }
+        });        holder.type.setText(model.getType());
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openPage(v.getContext(),model);
             }
         });
+        String[] date ;
+        date = model.getDateCreated().toString().split(" ");
+        // Thu Jun 04 14:46:12 GMT+01:00 2020
+        holder.appointement_day_name.setText(date[0]);
+        holder.appointement_day.setText(date[2]);
+        holder.appointement_month.setText(date[1]);
+        holder.doctor_view_title.setText(date[3]);
+
     }
 
     private void openPage(Context wf, Fiche m){
@@ -56,11 +75,20 @@ public class HospitalisationAdapter  extends FirestoreRecyclerAdapter<Fiche,Hosp
         TextView doctor_name;
         TextView type;
         Button btn;
+        TextView appointement_month;
+        TextView appointement_day;
+        TextView appointement_day_name;
+        TextView doctor_view_title;
+
         public FicheHolder2(View itemView) {
             super(itemView);
             doctor_name = itemView.findViewById(R.id.doctor_name2);
             type = itemView.findViewById(R.id.text_view_description2);
             btn = itemView.findViewById(R.id.voir_fiche_btn2);
+            appointement_month = itemView.findViewById(R.id.appointement_month);
+            appointement_day = itemView.findViewById(R.id.appointement_day);
+            appointement_day_name = itemView.findViewById(R.id.appointement_day_name);
+            doctor_view_title = itemView.findViewById(R.id.doctor_view_title);
         }
     }
 }

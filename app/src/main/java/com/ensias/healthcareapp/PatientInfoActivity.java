@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -62,6 +63,7 @@ public class PatientInfoActivity extends AppCompatActivity {
                 Log.e("tag", "onClick: "+specialiteList.getTag() );
                 FirebaseFirestore.getInstance().collection("Patient").document(patient_email).collection("moreInfo")
                         .document(patient_email).set(map);
+                Toast.makeText(PatientInfoActivity.this,"Update Success!",Toast.LENGTH_SHORT).show();
 
             }
         });
