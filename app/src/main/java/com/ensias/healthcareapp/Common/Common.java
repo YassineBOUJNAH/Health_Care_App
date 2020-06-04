@@ -23,6 +23,28 @@ public class Common {
     public static String CurrentPhone = "062912361255";
     public static SimpleDateFormat simpleFormat = new SimpleDateFormat("dd_MM_yyyy");
 
+    public static int convertBloodToInt(String s){
+        switch (s){
+            case "A+":
+                return 0;
+            case "A-":
+                return 1;
+            case "B+":
+                return 2;
+            case "B-":
+                return 3;
+            case "AB+":
+                return 4;
+            case "AB-":
+                return 5;
+            case "O+":
+                return 6;
+            case "O-":
+                return 7;
+            default:
+                return 0;
+        }
+    }
     public static String convertTimeSlotToString(int slot) {
         switch(slot) {
             case 0:
