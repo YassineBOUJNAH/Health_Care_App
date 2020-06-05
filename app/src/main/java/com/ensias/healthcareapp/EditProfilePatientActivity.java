@@ -60,7 +60,7 @@ public class EditProfilePatientActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile_doctor);
+        setContentView(R.layout.activity_edit_profile_patient);
         doctorRef = FirebaseFirestore.getInstance();
         profileImage = findViewById(R.id.image_profile);
         selectImage = findViewById(R.id.select_image);
@@ -136,7 +136,7 @@ public class EditProfilePatientActivity extends AppCompatActivity {
 
     /* Update the doctor info in the database */
     private void updateDoctorInfos(String name, String address, String phone) {
-        DocumentReference documentReference = doctorRef.collection("Doctor").document("" + doctorID + "");
+        DocumentReference documentReference = doctorRef.collection("Patient").document("" + doctorID + "");
         documentReference.update("adresse", address);
         //documentReference.update("email", email);
         documentReference.update("name", name);
