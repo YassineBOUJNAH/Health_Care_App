@@ -68,14 +68,16 @@ public class FicheActivity extends AppCompatActivity implements AdapterView.OnIt
         String descriptionFiche =  description.getText().toString();
         String traitemenfiche = traitement.getText().toString();
         String typeFiche = ficheType.getSelectedItem().toString();
+
         String patient_name = getIntent().getStringExtra("patient_name");
         String patient_email = getIntent().getStringExtra("patient_email");
 
 
         CollectionReference ficheRef = FirebaseFirestore.getInstance().collection("Patient").document(""+patient_email+"")
                 .collection("MyMedicalFolder");
-        ficheRef.add(new Fiche(maladieFiche, descriptionFiche, traitemenfiche, typeFiche, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
-        Toast.makeText(this, "Fiche added.", Toast.LENGTH_LONG).show();
+        ficheRef.document().set(new Fiche(maladieFiche, descriptionFiche, traitemenfiche, typeFiche, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        //ficheRef.add(new Fiche(maladieFiche, descriptionFiche, traitemenfiche, typeFiche, FirebaseAuth.getInstance().getCurrentUser().getEmail().toString()));
+        Toast.makeText(this, "Fiche added."+patient_name, Toast.LENGTH_LONG).show();
         finish();
     }
 

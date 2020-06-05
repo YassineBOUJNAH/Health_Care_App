@@ -33,7 +33,7 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<Fiche,Consult
 
     @Override
     protected void onBindViewHolder(@NonNull FicheHolder holder, int position, @NonNull final Fiche model) {
-        FirebaseFirestore.getInstance().document("Doctor/"+model.getDoctor()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        FirebaseFirestore.getInstance().document("Doctor/" + model.getDoctor()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 holder.doctor_name.setText(documentSnapshot.getString("name"));
@@ -43,16 +43,19 @@ public class ConsultationAdapter  extends FirestoreRecyclerAdapter<Fiche,Consult
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPage(v.getContext(),model);
+                openPage(v.getContext(), model);
             }
         });
-        String[] date ;
-        date = model.getDateCreated().toString().split(" ");
-        // Thu Jun 04 14:46:12 GMT+01:00 2020
-        holder.appointement_day_name.setText(date[0]);
-        holder.appointement_day.setText(date[2]);
-        holder.appointement_month.setText(date[1]);
-        holder.doctor_view_title.setText(date[3]);
+        String[] date;
+        if (model.getDateCreated() != null) {
+
+            date = model.getDateCreated().toString().split(" ");
+            // Thu Jun 04 14:46:12 GMT+01:00 2020
+            holder.appointement_day_name.setText(date[0]);
+            holder.appointement_day.setText(date[2]);
+            holder.appointement_month.setText(date[1]);
+            holder.doctor_view_title.setText(date[3]);
+        }
     }
 
     private void openPage(Context wf,Fiche m){
