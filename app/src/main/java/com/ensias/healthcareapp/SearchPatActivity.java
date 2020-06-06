@@ -93,7 +93,7 @@ public class SearchPatActivity extends AppCompatActivity {
         SpannableString sb = new SpannableString(" Specialite" );
         ImageSpan imageSpan = new ImageSpan(r, ImageSpan.ALIGN_BOTTOM);
         sb.setSpan(imageSpan, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        menu.findItem(R.id.empty).setTitle(sb);
+        //menu.findItem(R.id.empty).setTitle(sb);
 
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);

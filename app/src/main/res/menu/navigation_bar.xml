@@ -11,6 +11,7 @@
         android:id="@+id/empty"
         android:orderInCategory="101"
         android:title=""
+        android:icon="@drawable/ic_filter_list_black_24dp"
         app:showAsAction="ifRoom|withText">
         <menu>
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchPatActivity"
-    android:background="#EDF0F5"
+    android:background="#F4F3F3"
     android:id="@+id/id_show"
     tools:actionBarNavMode="standard"
     android:orientation="vertical">
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         app:titleTextColor="@android:color/white"
         app:subtitleTextColor="@android:color/white"
-        android:background="#B3B3B3"/>
+        android:background="#22BE87"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/serachPatRecycle"
