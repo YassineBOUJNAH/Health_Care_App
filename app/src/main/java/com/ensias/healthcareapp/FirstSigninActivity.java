@@ -52,9 +52,10 @@ public class FirstSigninActivity extends AppCompatActivity {
         String newAccountType = spinner.getSelectedItem().toString();
 
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-            String selected = spinner.getSelectedItem().toString();
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected = spinner.getSelectedItem().toString();
+                Log.e(TAG, "onItemSelected:" + selected);
                 if (selected.equals("Doctor")) {
                     specialiteList.setVisibility(View.VISIBLE);
                 } else {

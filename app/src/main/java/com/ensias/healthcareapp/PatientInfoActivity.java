@@ -49,6 +49,7 @@ public class PatientInfoActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 weightBtn.setText( ""+documentSnapshot.getString("weight"));
                 heightBtn.setText( ""+documentSnapshot.getString("height"));
+                if(documentSnapshot.getString("bloodType") != null)
                 specialiteList.setSelection(convertBloodToInt(documentSnapshot.getString("bloodType")));
             }
         });
