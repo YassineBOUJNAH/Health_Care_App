@@ -33,11 +33,11 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
 
         }
         if(apointementInformation.getType().equals("Accepted")){
-            patientAppointmentsHolder.type.setTextColor(Color.GREEN);
+            patientAppointmentsHolder.type.setTextColor(Color.parseColor("#20bf6b"));
         }else if(apointementInformation.getType().equals("Checked")){
-            patientAppointmentsHolder.type.setTextColor(Color.BLUE);
+            patientAppointmentsHolder.type.setTextColor(Color.parseColor("#8854d0"));
         }else{
-            patientAppointmentsHolder.type.setTextColor(Color.RED);
+            patientAppointmentsHolder.type.setTextColor(Color.parseColor("#eb3b5a"));
         }
 
     }

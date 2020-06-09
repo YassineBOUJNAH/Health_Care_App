@@ -56,7 +56,7 @@
             android:maxLines="1"
             android:text="Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#000000" />
+            android:textColor="#22BE87" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -75,20 +75,19 @@
 
         <Button
             android:id="@+id/infobtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="54dp"
+            android:layout_height="64dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_gravity="bottom|end"
             android:layout_marginStart="14dp"
             android:layout_marginLeft="14dp"
             android:layout_marginTop="13dp"
-            android:layout_marginEnd="91dp"
-            android:layout_marginRight="91dp"
+            android:layout_marginEnd="102dp"
+            android:layout_marginRight="102dp"
+            android:background="@drawable/ic_assignment_ind_black_24dp"
             android:clickable="true"
-            android:scaleType="center"
-            android:text="physical info"
-            app:backgroundTint="@color/colorAccent" />
+            android:scaleType="center"/>
 
 
     </RelativeLayout>
@@ -125,7 +124,7 @@
         android:layout_marginRight="54dp"
         android:clickable="true"
         android:scaleType="center"
-        app:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="#F4F3F3"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 
 </LinearLayout>

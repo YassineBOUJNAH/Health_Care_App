@@ -2,17 +2,15 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginEnd="10dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginBottom="8dp"
     app:cardBackgroundColor="@color/cardview_light_background"
     >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="95dp"
         >
 
         <TextView
@@ -22,12 +20,27 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="114dp"
-            android:layout_marginLeft="114dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginStart="97dp"
+            android:layout_marginLeft="97dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
             android:text="Patient name"
-            android:textColor="#22BE87" />
+            android:textColor="#22BE87"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="291dp"
+            android:layout_marginLeft="291dp"
+            android:layout_marginTop="39dp"
+            android:fontFamily="@font/roboto"
+            android:text="Status:"
+            android:textColor="#B9B9B9"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/type"
@@ -36,12 +49,13 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="290dp"
-            android:layout_marginLeft="290dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="342dp"
+            android:layout_marginLeft="342dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/roboto"
             android:text="Accepted"
-            android:textColor="#22BE87" />
+            android:textColor="#22BE87"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/appointement_type"
@@ -50,30 +64,30 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="82dp"
-            android:layout_marginEnd="19dp"
-            android:layout_marginRight="19dp"
+            android:layout_marginTop="66dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginRight="11dp"
             android:background="@drawable/button_radius_accent_color"
             android:fontFamily="@font/roboto_light"
             android:gravity="center"
             android:text="Hospitalisation"
             android:textColor="#fff"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/patient_phone"
-            android:layout_width="wrap_content"
+            android:layout_width="78dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="113dp"
-            android:layout_marginLeft="113dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginStart="97dp"
+            android:layout_marginLeft="97dp"
+            android:layout_marginTop="43dp"
             android:fontFamily="@font/roboto_light"
             android:text="0652316456"
             android:textColor="#B9B9B9"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <ImageView
             android:id="@+id/patient_image"
@@ -82,26 +96,26 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="29dp"
-            android:layout_marginLeft="29dp"
-            android:layout_marginBottom="26dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginBottom="16dp"
             android:foregroundGravity="center"
             app:srcCompat="@drawable/ic_anon_user_48dp" />
 
         <TextView
             android:id="@+id/appointement_date"
-            android:layout_width="116dp"
+            android:layout_width="184dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="114dp"
-            android:layout_marginLeft="114dp"
-            android:layout_marginTop="82dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginLeft="96dp"
+            android:layout_marginTop="68dp"
             android:fontFamily="@font/roboto"
             android:text="12/06/2020 at 9pm"
             android:textColor="#22BE87"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>

@@ -19,11 +19,20 @@ public class HomeActivity extends AppCompatActivity {
     Button searchPatBtn;
     Button myDoctors;
     Button BtnRequst;
-    Button profilebtn;
+    Button profile;
+    Button appointment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        appointment = findViewById(R.id.appointement2);
+        appointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent k = new Intent(HomeActivity.this, PatientAppointementsActivity.class);
+                startActivity(k);
+            }
+        });
         searchPatBtn = (Button)findViewById(R.id.searchBtn);
         searchPatBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +70,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        profilebtn = findViewById(R.id.profile);
-        profilebtn.setOnClickListener(new View.OnClickListener() {
+        profile = findViewById(R.id.profile);
+        profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent k = new Intent(HomeActivity.this, .class);
-                //startActivity(k);
+                Intent k = new Intent(HomeActivity.this, ProfilePatientActivity.class);
+                startActivity(k);
             }
         });
 

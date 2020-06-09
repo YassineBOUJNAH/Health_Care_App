@@ -50,27 +50,23 @@ public class FirstSigninActivity extends AppCompatActivity {
         adapterSpecialiteList.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         specialiteList.setAdapter(adapterSpecialiteList);
         String newAccountType = spinner.getSelectedItem().toString();
-        /*
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            String selected = spinner.getSelectedItem().toString();
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (newAccountType.equals("Patient")) {
-                    specialiteList.setVisibility(View.GONE);
-                } else {
+                if (selected.equals("Doctor")) {
                     specialiteList.setVisibility(View.VISIBLE);
+                } else {
+                    specialiteList.setVisibility(View.GONE);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                specialiteList.setVisibility(View.GONE);
             }
-
-            ;
         });
-
-         */
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
