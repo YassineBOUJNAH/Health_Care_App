@@ -1,5 +1,6 @@
 package com.ensias.healthcareapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -16,12 +17,23 @@ import com.ensias.healthcareapp.Common.Common;
 import com.ensias.healthcareapp.adapter.ConsultationFragmentAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class DossierMedical extends AppCompatActivity {
     private final static String TAG = "DossierMedical";
     private FloatingActionButton createNewFicheButton;
     private String patient_email;
     private Button infobtn;
+    private String patient_name;
+    private String patient_phone;
+    final String patientID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference patRef = db.collection("Patient").document("" + patientID + "");
 
 
     @Override
@@ -61,15 +73,28 @@ public class DossierMedical extends AppCompatActivity {
         //Check if the incoming intents exist
         if(getIntent().hasExtra("patient_name") && getIntent().hasExtra("patient_email")){
             Log.d(TAG, "getIncomingIntent: found intent extras.");
-            String patient_name = getIntent().getStringExtra("patient_name");
-            String patient_email = getIntent().getStringExtra("patient_email");
-            String patient_phone = getIntent().getStringExtra("patient_phone");
+            patient_name = getIntent().getStringExtra("patient_name");
+            patient_email = getIntent().getStringExtra("patient_email");
+            patient_phone = getIntent().getStringExtra("patient_phone");
 
             //set patient name, email, phone number
             setPatientInfos(patient_name, patient_email, patient_phone);
+        }else{
+            Log.d(TAG, "No intent");
+            patRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    patient_name = documentSnapshot.getString("name");
+                    patient_phone = documentSnapshot.getString("tel");
+                    patient_email = documentSnapshot.getString("email");
 
+                    //set patient name, email, phone number
+                    setPatientInfos(patient_name, patient_email, patient_phone);
+                }
+            });
         }
-        Log.d(TAG, "No intent");
+
+
 
     }
 
