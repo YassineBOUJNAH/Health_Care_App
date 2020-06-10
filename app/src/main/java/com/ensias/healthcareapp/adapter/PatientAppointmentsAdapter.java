@@ -3,6 +3,7 @@ package com.ensias.healthcareapp.adapter;
 import android.app.AlertDialog;
 import android.graphics.Color;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +15,34 @@ import com.ensias.healthcareapp.R;
 import com.ensias.healthcareapp.model.ApointementInformation;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.concurrent.Executor;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import dmax.dialog.SpotsDialog;
 
 public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<ApointementInformation, PatientAppointmentsAdapter.PatientAppointmentsHolder> {
-    StorageReference pathReference ;
+    StorageReference pathReference;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    DocumentReference docRef;
+    DocumentSnapshot documentSnapshot;
     final String doctorID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+
     public PatientAppointmentsAdapter(@NonNull FirestoreRecyclerOptions<ApointementInformation> options) {
         super(options);
     }
@@ -38,10 +53,23 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
         patientAppointmentsHolder.patientName.setText(apointementInformation.getDoctorName());
         patientAppointmentsHolder.appointementType.setText(apointementInformation.getApointementType());
         patientAppointmentsHolder.type.setText(apointementInformation.getType());
+        String doctorEmail = apointementInformation.getDoctorId();
+        Log.d("docotr email", doctorEmail);
+        docRef = db.collection("Doctor").document("" + doctorEmail + "");
+        /* Get the doctor's phone number */
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                DocumentSnapshot document = task.getResult();
+                patientAppointmentsHolder.phone.setText(document.getString("tel"));
+                Log.d("telephone num", document.getString("tel"));
+            }
+        });
+
 
         //display profile image
         String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
-        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId+".jpg");
+        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/" + imageId + ".jpg");
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -60,19 +88,17 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
             }
         });
 
-        if(apointementInformation.getApointementType().equals("Consultation")){
+        if (apointementInformation.getApointementType().equals("Consultation")) {
             //patientAppointmentsHolder.appointementType.setBackgroundColor((patientAppointmentsHolder.type.getContext().getResources().getColor(R.color.colorPrimaryDark)));
             patientAppointmentsHolder.appointementType.setBackground(patientAppointmentsHolder.appointementType.getContext().getResources().getDrawable(R.drawable.button_radius_primary_color));
-
         }
-        if(apointementInformation.getType().equals("Accepted")){
+        if (apointementInformation.getType().equals("Accepted")) {
             patientAppointmentsHolder.type.setTextColor(Color.parseColor("#20bf6b"));
-        }else if(apointementInformation.getType().equals("Checked")){
+        } else if (apointementInformation.getType().equals("Checked")) {
             patientAppointmentsHolder.type.setTextColor(Color.parseColor("#8854d0"));
-        }else{
+        } else {
             patientAppointmentsHolder.type.setTextColor(Color.parseColor("#eb3b5a"));
         }
-
     }
 
     @NonNull
@@ -83,7 +109,7 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
     }
 
 
-    class PatientAppointmentsHolder extends RecyclerView.ViewHolder{
+    class PatientAppointmentsHolder extends RecyclerView.ViewHolder {
         TextView dateAppointement;
         TextView patientName;
         TextView appointementType;
