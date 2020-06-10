@@ -73,7 +73,7 @@ public class DoctorAdapterFiltred  extends RecyclerView.Adapter<DoctorAdapterFil
                         .placeholder(R.mipmap.ic_launcher)
                         .fit()
                         .centerCrop()
-                        .into(doctoreHolder.image);//hna fin kayn Image view
+                        .into(doctoreHolder.image);//Image location
 
                 // profileImage.setImageURI(uri);
             }
