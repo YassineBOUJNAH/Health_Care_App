@@ -55,6 +55,7 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
         TextView patientName;
         TextView appointementType;
         TextView type;
+        TextView phone;
 
         public PatientAppointmentsHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,6 +63,7 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
             patientName = itemView.findViewById(R.id.patient_name);
             appointementType = itemView.findViewById(R.id.appointement_type);
             type = itemView.findViewById(R.id.type);
+            phone = itemView.findViewById(R.id.patient_phone);
         }
     }
 }

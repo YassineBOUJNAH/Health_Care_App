@@ -2,6 +2,9 @@ package com.ensias.healthcareapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.nfc.Tag;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +42,17 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
                 openPage(v.getContext(),doctor);
             }
         });
+        myDoctorsHolder.callBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPage(myDoctorsHolder.sendMessageButton.getContext(),doctor.getTel());
+            }
+        });
+    }
+
+    private void openPage(Context wf, String phoneNumber){
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+        wf.startActivity(intent);
     }
 
     private void openPage(Context wf, Doctor d){
@@ -62,6 +76,8 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
         TextView textViewStatus;
         ImageView imageViewDoctor;
         Button sendMessageButton;
+        Button callBtn;
+        Button contactButton;
         public MyDoctorAppointementHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.doctor_view_title);
@@ -69,6 +85,8 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
             textViewStatus = itemView.findViewById(R.id.onlineStatut);
             imageViewDoctor = itemView.findViewById(R.id.doctor_item_image);
             sendMessageButton = itemView.findViewById(R.id.voir_fiche_btn);
+            callBtn = itemView.findViewById(R.id.callBtn);
+            contactButton = itemView.findViewById(R.id.contact);
         }
     }
 
