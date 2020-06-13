@@ -55,7 +55,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
             }
         });
 
-        String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail()+".jpg"; //add a title image
+        String imageId = doctor.getEmail()+".jpg"; //add a title image
         pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

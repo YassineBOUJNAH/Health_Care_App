@@ -25,7 +25,7 @@ public class MessageAdapter extends FirestoreRecyclerAdapter<Message,MessageAdap
 
     @Override
     protected void onBindViewHolder(@NonNull MessageHolder holder, int position, @NonNull Message model) {
-        if(model.getUserSender().compareTo(getCurrentUser().getEmail()+"") != 0){
+        if(model.getUserSender().equals(getCurrentUser().getEmail()+"") ){
             //holder.text.setTextSize(20);
             //holder.text.setBackgroundColor(0xC0C0C0);
            // CoordinatorLayout.LayoutParams  lllp= (CoordinatorLayout.LayoutParams) holder.text.getLayoutParams();

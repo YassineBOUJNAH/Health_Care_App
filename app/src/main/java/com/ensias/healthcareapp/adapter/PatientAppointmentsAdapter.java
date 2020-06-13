@@ -68,7 +68,7 @@ public class PatientAppointmentsAdapter extends FirestoreRecyclerAdapter<Apointe
 
 
         //display profile image
-        String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
+        String imageId = apointementInformation.getDoctorId();
         pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/" + imageId + ".jpg");
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override

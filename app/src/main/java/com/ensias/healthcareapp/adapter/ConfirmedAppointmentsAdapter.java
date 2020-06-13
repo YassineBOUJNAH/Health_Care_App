@@ -35,7 +35,7 @@ public class ConfirmedAppointmentsAdapter extends FirestoreRecyclerAdapter<Apoin
         confirmedAppointmentsHolder.patientName.setText(apointementInformation.getPatientName());
         confirmedAppointmentsHolder.appointementType.setText(apointementInformation.getApointementType());
 
-        String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail()+".jpg"; //add a title image
+        String imageId = apointementInformation.getPatientId()+".jpg"; //add a title image
         pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
