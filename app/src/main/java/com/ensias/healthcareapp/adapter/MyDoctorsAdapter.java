@@ -54,7 +54,7 @@ public class MyDoctorsAdapter extends FirestoreRecyclerAdapter<Doctor, MyDoctors
                 openPage(myDoctorsHolder.sendMessageButton.getContext(),doctor.getTel());
             }
         });
-
+//
         String imageId = doctor.getEmail()+".jpg"; //add a title image
         pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
         pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
