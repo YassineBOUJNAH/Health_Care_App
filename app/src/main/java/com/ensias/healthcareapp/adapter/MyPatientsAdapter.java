@@ -19,13 +19,19 @@ import com.ensias.healthcareapp.model.Fiche;
 import com.ensias.healthcareapp.model.Patient;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatientsAdapter.MyPatientsHolder> {
+    StorageReference pathReference ;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.
@@ -58,6 +64,27 @@ public class MyPatientsAdapter extends FirestoreRecyclerAdapter<Patient, MyPatie
             @Override
             public void onClick(View v) {
                 openPage(myPatientsHolder.contactButton.getContext(),patient.getTel());
+            }
+        });
+
+        String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail()+".jpg"; //add a title image
+        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(myPatientsHolder.imageViewPatient.getContext())
+                        .load(uri)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(myPatientsHolder.imageViewPatient);//Image location
+
+                // profileImage.setImageURI(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
             }
         });
 

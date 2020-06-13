@@ -1,20 +1,25 @@
 package com.ensias.healthcareapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ensias.healthcareapp.Common.Common;
 import com.ensias.healthcareapp.adapter.ConsultationFragmentAdapter;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +28,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 public class DossierMedical extends AppCompatActivity {
     private final static String TAG = "DossierMedical";
@@ -34,12 +42,14 @@ public class DossierMedical extends AppCompatActivity {
     final String patientID = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     DocumentReference patRef = db.collection("Patient").document("" + patientID + "");
+    StorageReference pathReference ;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dossier_medical);
+        ImageView image = findViewById(R.id.imageView2);
         patient_email = getIntent().getStringExtra("patient_email");
         this.configureViewPager();
 
@@ -61,6 +71,27 @@ public class DossierMedical extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openPatientInfo();
+            }
+        });
+
+        String imageId = patient_email+".jpg"; //add a title image
+        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(image.getContext())
+                        .load(uri)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(image);//Image location
+
+                // profileImage.setImageURI(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
             }
         });
 
@@ -110,6 +141,9 @@ public class DossierMedical extends AppCompatActivity {
 
         TextView number = findViewById(R.id.phone_number);
         number.setText(patient_phone);
+
+
+
     }
 
     private void configureViewPager() {

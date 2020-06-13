@@ -2,6 +2,7 @@ package com.ensias.healthcareapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +17,21 @@ import com.ensias.healthcareapp.model.Doctor;
 import com.ensias.healthcareapp.model.Patient;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<ApointementInformation, DoctorAppointementAdapter.MyDoctorAppointementHolder> {
+    StorageReference pathReference ;
+
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.
@@ -83,6 +90,27 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
             }
         });
 
+        String imageId = FirebaseAuth.getInstance().getCurrentUser().getEmail()+".jpg"; //add a title image
+        pathReference = FirebaseStorage.getInstance().getReference().child("DoctorProfile/"+ imageId); //storage the image
+        pathReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(myDoctorAppointementHolder.patient_image.getContext())
+                        .load(uri)
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(myDoctorAppointementHolder.patient_image);//Image location
+
+                // profileImage.setImageURI(uri);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
     }
 
     private void openPage(Context wf, Doctor d){
@@ -106,6 +134,7 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
         Button approveBtn;
         Button cancelBtn;
         TextView appointementType;
+        ImageView patient_image;
         public MyDoctorAppointementHolder(@NonNull View itemView) {
             super(itemView);
             dateAppointement = itemView.findViewById(R.id.appointement_date);
@@ -113,6 +142,7 @@ public class DoctorAppointementAdapter extends FirestoreRecyclerAdapter<Apointem
             approveBtn = itemView.findViewById(R.id.btn_accept);
             cancelBtn = itemView.findViewById(R.id.btn_decline);
             appointementType = itemView.findViewById(R.id.appointement_type);
+            patient_image = itemView.findViewById(R.id.patient_image);
         }
     }
 
