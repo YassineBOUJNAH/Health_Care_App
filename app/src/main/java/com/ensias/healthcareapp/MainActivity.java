@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordText;
     private Button loginBtn;
     private Button creatBtn;
+    private EditText secondPass;
     private EditText confirme;
     SignInButton signInButton;
     FirebaseFirestore  db = FirebaseFirestore.getInstance();
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         emailText= (EditText) findViewById(R.id.editText2);
         passwordText= (EditText) findViewById(R.id.editText);
+        secondPass= (EditText) findViewById(R.id.editText3);
         signUpBtn =(Button)findViewById(R.id.SignUpBtn);
         loginBtn = (Button)findViewById(R.id.LoginBtn);
         creatBtn = findViewById(R.id.CreateAccount);
@@ -79,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email=emailText.getText().toString();
                 String password=passwordText.getText().toString();
-                if(!email.isEmpty() && !password.isEmpty()){
+                String confirmPass = secondPass.getText().toString();
+                if(!email.isEmpty() && !password.isEmpty() && password.equals(confirmPass)){
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -103,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
             }else{
                     Toast.makeText(MainActivity.this, "vous devez rensegner toutes les champs",
                             Toast.LENGTH_SHORT).show();
+                    if(!password.equals(confirmPass)){
+                        Toast.makeText(MainActivity.this, "Confirm pass don't match password",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
