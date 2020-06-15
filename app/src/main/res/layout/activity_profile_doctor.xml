@@ -114,7 +114,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="65dp"
-            android:text="Doctor tazi"
+            android:text="Patient"
             android:textColor="#B9B9B9"
             android:textSize="16sp" />
 
