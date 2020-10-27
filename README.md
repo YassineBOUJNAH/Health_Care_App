@@ -1,6 +1,5 @@
 ## HealthCare App
-A mobile application that facilitates making appointments and monitoring pa-
-tients.
+A mobile application that facilitates making appointments and monitoring patients.
 
 ## 🤓 Authors
 **Yassine Boujnah** [![Twitter Follow](https://img.shields.io/twitter/follow/yassboujnah.svg?style=social)](https://twitter.com/yassboujnah)
